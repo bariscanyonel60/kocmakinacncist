@@ -54,7 +54,7 @@ export function Header() {
       >
         <div className="mx-auto flex h-[4.75rem] max-w-[1440px] items-center justify-between gap-3 px-4 sm:gap-6 sm:px-5 md:px-10">
           <Logo />
-          <nav className="hidden items-center gap-5 xl:flex 2xl:gap-7" aria-label="Ana menü">
+          <nav className="hidden items-center gap-4 xl:flex 2xl:gap-7" aria-label="Ana menü">
             {navItems.map((item) => {
               const active = isActive(pathname, item.href);
               return (
@@ -62,7 +62,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative py-2 text-[11px] font-semibold tracking-[0.14em] whitespace-nowrap uppercase transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300",
+                    "relative py-2 text-[13px] font-bold tracking-[0.08em] 2xl:tracking-[0.12em] whitespace-nowrap uppercase transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300",
                     active ? "text-white after:scale-x-100" : "text-white/70 after:scale-x-0 hover:text-white hover:after:scale-x-100",
                   )}
                   aria-current={active ? "page" : undefined}
@@ -75,7 +75,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/iletisim#teklif"
-              className="group inline-flex items-center gap-2 bg-accent px-3 py-3 text-[11px] font-semibold tracking-[0.16em] whitespace-nowrap text-white uppercase transition-colors hover:bg-white hover:text-ink sm:px-5 sm:text-[12px] sm:tracking-[0.18em]"
+              className="group inline-flex items-center gap-2 bg-accent px-3 py-3 text-[11px] font-semibold tracking-[0.16em] whitespace-nowrap text-white uppercase transition-colors hover:bg-white hover:text-ink sm:px-5 sm:text-[13px] sm:font-bold sm:tracking-[0.16em]"
             >
               Teklif Al
               <span aria-hidden="true" className="hidden transition-transform group-hover:translate-x-1 sm:inline">
