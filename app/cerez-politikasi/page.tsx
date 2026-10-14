@@ -4,7 +4,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Çerez Politikası",
   description:
-    "KOC Makina sitesinde pazarlama ve analitik çerezi yoktur. Ölçüm aracı eklenirse bu politika ve onay birlikte güncellenir.",
+    "Koç Makina sitesinde pazarlama ve analitik çerezi yoktur. Ölçüm aracı eklenirse bu politika ve onay birlikte güncellenir.",
   path: "/cerez-politikasi",
 });
 

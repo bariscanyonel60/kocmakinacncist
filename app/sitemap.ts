@@ -9,6 +9,7 @@ const staticPaths = [
   "/makine-parkuru",
   "/uretim",
   "/sektorler",
+  "/kalite",
   "/galeri",
   "/iletisim",
   "/istanbul-cnc-torna",

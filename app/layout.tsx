@@ -3,7 +3,6 @@ import { Manrope, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { StickyCall } from "@/components/layout/StickyCall";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { graphJsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { rootMetadata } from "@/lib/seo";
@@ -44,7 +43,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="icerik">{children}</main>
         <Footer />
         <StickyCall />
-        <WhatsAppButton />
       </body>
     </html>
   );

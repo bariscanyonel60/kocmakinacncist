@@ -5,55 +5,83 @@ export type Faq = {
 
 export const homeFaqs: Faq[] = [
   {
-    question: "KOC Makina ne yapar?",
+    question: "Koç Makina hangi üretim hizmetlerini sunar?",
     answer:
-      "KOC Makina, İstanbul'da CNC torna, CNC işleme ve talaşlı imalat alanında parça üretir. Teknik çizim, model veya numune üzerinden hassas metal parçalar işlenir; prototip ve seri üretim talepleri aynı değerlendirme hattında ele alınır.",
+      "Koç Makina, İstanbul'da CNC torna, CNC freze ve hassas talaşlı imalat alanında parça üretir. Prototip, seri üretim ve katalog dışı özel parçalar teknik resim veya numune üzerinden işlenir.",
   },
   {
-    question: "CNC torna nedir?",
+    question: "CNC freze işleri yapıyor musunuz?",
     answer:
-      "CNC torna, iş parçasının döndüğü ve kesici takımın kontrollü ilerleme ile talaş kaldırdığı bir işleme yöntemidir. Mil, burç, flanş, pim ve benzeri döner geometriler bu yöntemle üretilir. Program, ölçülerin tekrar edilebilir olmasını sağlar.",
+      "Evet. Düzlem, cep, kontur, delik ve diş gerektiren parçalar CNC frezede işlenir. Önce torna sonra freze gereken parçalarda iki operasyon aynı üretim planında sıralanır.",
   },
   {
-    question: "CNC torna hangi parçalarda kullanılır?",
+    question: "Hangi malzemeler işlenir?",
     answer:
-      "Eksenel simetrisi olan parçalarda kullanılır: miller, burçlar, rakorlar, flanşlar, pimler, kovanlar ve diş açılacak silindirik gövdeler. Parçada cep, kanal veya düzlem de varsa torna operasyonuna CNC işleme eklenebilir.",
+      "Çelik, paslanmaz çelik, alüminyum, pirinç ve benzeri işlenebilir metaller çizime göre değerlendirilir. Kesme parametresi ve takım seçimi malzemeye göre ayrı planlanır.",
   },
   {
-    question: "CNC işleme nedir?",
+    question: "Hangi toleranslarda çalışıyorsunuz?",
     answer:
-      "CNC işleme, kesici takımın programlanan yollarla metal üzerinden talaş kaldırdığı frezeleme ağırlıklı üretim yöntemidir. Cep, kontur, delik, diş ve düzlem gibi prizmatik geometriler bu yöntemle çıkarılır.",
+      "Kabul aralığı parçanın kendi teknik resminden gelir; genel bir mikron değeri ilan edilmez. Dar toleranslı ölçüler teklif aşamasında ayrıca okunur ve üretim planı buna göre kurulur.",
   },
   {
-    question: "Talaşlı imalat nedir?",
+    question: "Prototip veya tek parça üretim yapılır mı?",
     answer:
-      "Talaşlı imalat, istenen formu elde etmek için malzemeden talaş kaldırmaktır. CNC torna ve CNC işleme bu ailenin iki temel yöntemidir. Delik delme, diş açma ve yüzey temizleme de aynı sürecin içindedir.",
+      "Yapılır. Tek parça ve küçük adetler, seri üretime geçmeden önce geometriyi ve ölçüyü doğrulamak için işlenir. Prototipte çıkan teknik notlar seri planına aktarılır.",
   },
   {
-    question: "Teknik çizime göre parça üretilebilir mi?",
+    question: "Minimum sipariş adedi var mı?",
     answer:
-      "Evet. Üretim talebi teknik resim, STEP veya STP model ya da numune ile alınır. Ölçüler, toleranslar, malzeme ve yüzey isteği değerlendirmeye esas olur. Çizimdeki kritik ölçüler teklif aşamasında ayrıca sorulabilir.",
+      "Sabit bir minimum adet ilan edilmez. Tek parça prototip de seri parti de değerlendirilir; adet, bağlama ve hazırlık süresi birim maliyeti doğrudan etkiler.",
   },
   {
-    question: "Prototip üretim yapılabilir mi?",
+    question: "Teklif için hangi dosyaları göndermeliyim?",
     answer:
-      "Yapılabilir. Tek parça ve küçük adetler, seri üretime geçmeden önce geometriyi ve ölçüyü görmek için işlenir. Prototipte çıkan teknik notlar, sonraki seri planına aktarılır.",
+      "Teknik resim (PDF, DXF, DWG) veya 3D model (STEP, STP, IGES) yeterlidir. Malzeme, adet, tolerans ve yüzey isteğini de yazarsanız değerlendirme hızlanır. Dosyalar teklif formundan eklenebilir.",
   },
   {
-    question: "Seri üretim nasıl planlanır?",
+    question: "Teklif ne kadar sürede hazırlanır?",
     answer:
-      "Adet, malzeme, tolerans ve operasyon sırası birlikte ele alınır. Bağlama şekli ve kontrol noktaları, parçanın her partide aynı ölçü aralığında kalması için planlanır. Süre, geometri ve adede göre değişir; sabit bir tempo vaadi verilmez.",
+      "Süre, çizimin eksiksiz olmasına ve parçanın karmaşıklığına bağlıdır; sabit bir süre vaadi verilmez. Eksik ölçü veya belirsiz tolerans varsa varsayım yapılmaz, önce size sorulur.",
   },
   {
-    question: "CNC torna fiyatı nasıl belirlenir?",
+    question: "İstanbul dışından talep gönderebilir miyim?",
     answer:
-      "Fiyat; malzeme, çap ve boy, tolerans, operasyon sayısı, yüzey isteği, adet ve kontrol kapsamına göre hesaplanır. Katalog fiyatı yoktur. Teknik resmi paylaştığınızda parça özelinde teklif hazırlanır.",
+      "Teknik resim çevrim içi iletildiği için talep bulunduğunuz şehirden bağımsız değerlendirilir. Sevkiyat şekli ve teslim yeri sipariş sırasında netleştirilir.",
+  },
+];
+
+export const qualityFaqs: Faq[] = [
+  {
+    question: "Parçalar teslim öncesi kontrol ediliyor mu?",
+    answer:
+      "Evet. Teknik resimdeki kritik ölçüler teslim öncesinde kontrol edilir. Sapma gösteren parça sevkiyata çıkmaz.",
+  },
+  {
+    question: "Seri üretimde ölçü nasıl takip edilir?",
+    answer:
+      "İlk parça ölçülmeden seri devam etmez. Parti içinde ara kontrol yapılır; bağlama ve operasyon sırası her tekrarda aynı plana bağlıdır.",
+  },
+  {
+    question: "Ölçüm raporu veriliyor mu?",
+    answer:
+      "Yazılı rapor ihtiyacı sipariş sırasında belirtilirse kapsamı birlikte netleştirilir. Standart bir sertifika iddiası yayınlanmaz.",
+  },
+  {
+    question: "Kalite belgeleriniz var mı?",
+    answer:
+      "Doğrulanmış belge bilgisi bu sayfaya eklenene kadar herhangi bir sertifika adı yazılmaz. Belge şartı olan projelerde talep sırasında bilgi verilir.",
+  },
+  {
+    question: "Tolerans dışı parça çıkarsa ne olur?",
+    answer:
+      "Kontrolde sınır dışı kalan parça teslim edilmez. Nedeni operasyon planında aranır ve düzeltme sonraki parçalara uygulanır.",
   },
 ];
 
 export const aboutFaqs: Faq[] = [
   {
-    question: "KOC Makina nerede üretim yapar?",
+    question: "Koç Makina nerede üretim yapar?",
     answer:
       "Üretim odağı İstanbul'dur. İlçe, sanayi sitesi ve açık adres, firma kaydı doğrulanmadan sayfada yazılmaz.",
   },
@@ -177,7 +205,7 @@ export const galleryFaqs: Faq[] = [
   {
     question: "Filtreler neyi ayırır?",
     answer:
-      "CNC torna, üretim, parçalar, makine parkuru ve atölye. Aynı kare birden fazla iddia taşımaz.",
+      "CNC torna, CNC freze, parçalar, üretim, makine parkuru ve atölye. Boş kalan kategori filtrede gösterilmez; aynı kare birden fazla iddia taşımaz.",
   },
   {
     question: "Ölçü fotoğraftan okunur mu?",
@@ -193,14 +221,14 @@ export const galleryFaqs: Faq[] = [
 
 export const contactFaqs: Faq[] = [
   {
-    question: "Formu gönderince talep kaydolur mu?",
+    question: "Formu gönderince talep nereye gider?",
     answer:
-      "Hayır. Form doğrulanır, kayıt hattı bağlanana kadar sunucu talebi saklamadan geri çevirir. Başarılı gönderim denmez.",
+      "Form doğrulandıktan sonra talep ve ekli dosyalar e-postayla ekibimize iletilir. Gönderim başarısız olursa başarılı mesajı gösterilmez; ekranda hata görünür.",
   },
   {
     question: "Hangi dosyalar eklenebilir?",
     answer:
-      "PDF, DXF, DWG, STEP, STP ve IGES. En fazla beş dosya, dosya başına 8 MB. Dosyalar şu an depolanmaz.",
+      "PDF, DXF, DWG, STEP, STP, IGES ve ZIP. En fazla beş dosya, toplam 4 MB. Dosyalar talebinizle birlikte ekibimize e-postayla iletilir.",
   },
   {
     question: "Telefon neden sitede yok?",
@@ -210,7 +238,7 @@ export const contactFaqs: Faq[] = [
   {
     question: "Ne kadar sürede dönüş olur?",
     answer:
-      "Kayıt hattı çalışmadan süre verilmez. Çizim, malzeme ve adet eksiksizse değerlendirme daha net olur.",
+      "Sabit bir süre vaadi verilmez. Çizim, malzeme ve adet eksiksizse değerlendirme daha hızlı ve net olur.",
   },
   {
     question: "Teklif ücretli mi?",

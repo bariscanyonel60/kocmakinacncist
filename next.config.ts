@@ -3,9 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
-  images: {
-    formats: ["image/avif", "image/webp"],
-  },
+  images: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+    ? { loader: "custom", loaderFile: "./lib/cloudinary-loader.ts" }
+    : { formats: ["image/avif", "image/webp"] },
   async headers() {
     return [
       {

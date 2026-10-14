@@ -3,10 +3,10 @@ import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { PageHero } from "@/components/layout/PageHero";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Container } from "@/components/ui/Container";
-import { galleryItems } from "@/data/gallery";
 import { PageFaq } from "@/components/layout/PageFaq";
 import { galleryFaqs } from "@/data/faq";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
+import { getGalleryItems } from "@/lib/media";
 import { pageMeta } from "@/lib/seo";
 
 const crumbs = [
@@ -17,11 +17,13 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "Üretim Galerisi",
   description:
-    "KOC Makina galerisinde CNC torna, işleme, işlenmiş metal parçalar, makine detayları ve atölye kareleri.",
+    "Koç Makina galerisinde CNC torna, işleme, işlenmiş metal parçalar, makine detayları ve atölye kareleri.",
   path: "/galeri",
 });
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const galleryItems = await getGalleryItems();
+
   return (
     <>
       <JsonLd data={breadcrumbJsonLd(crumbs)} />

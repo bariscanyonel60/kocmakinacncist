@@ -4,7 +4,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Gizlilik Politikası",
   description:
-    "KOC Makina sitesinde teklif formuna yazılan ad, telefon, e-posta ve teknik dosyanın amacı, saklanmaması ve haklarınız.",
+    "Koç Makina sitesinde teklif formuna yazılan ad, telefon, e-posta ve teknik dosyanın amacı, saklanmaması ve haklarınız.",
   path: "/gizlilik-politikasi",
 });
 
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         {
           heading: "Veri sorumlusu",
           paragraphs: [
-            "Site, KOC Makina CNC adına yayınlanır. Telefon, e-posta ve açık adres firma kaydında doluysa sitede görünür ve o kanallar da geçerlidir. Tanımlı değilse tek iletişim yolu formdur.",
+            "Site, Koç Makina CNC adına yayınlanır. Telefon, e-posta ve açık adres firma kaydında doluysa sitede görünür ve o kanallar da geçerlidir. Tanımlı değilse tek iletişim yolu formdur.",
           ],
         },
         {

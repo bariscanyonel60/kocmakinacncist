@@ -22,7 +22,7 @@ const links = [
 export const metadata = pageMeta({
   title: "Sayfa bulunamadı",
   description:
-    "Aradığınız KOC Makina sayfası yok. CNC torna, işleme, galeri ve teklif sayfalarına buradan geçebilirsiniz.",
+    "Aradığınız Koç Makina sayfası yok. CNC torna, işleme, galeri ve teklif sayfalarına buradan geçebilirsiniz.",
   path: "/404",
   index: false,
 });

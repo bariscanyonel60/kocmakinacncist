@@ -14,7 +14,7 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "Teklif talebi için teşekkürler",
   description:
-    "KOC Makina teklif kaydı oluştuğunda bu sayfa açılır. Kayıt hattı bağlanmadan talep alınmış sayılmaz.",
+    "Koç Makina teklif talebiniz iletildi. Teknik resminiz incelenip size dönüş yapılır.",
   path: "/tesekkurler",
   index: false,
 });
@@ -37,13 +37,13 @@ export default function ThanksPage() {
       <Breadcrumbs items={crumbs} />
       <Container className="max-w-3xl py-16 lg:py-24">
         <p className="eyebrow text-accent">Teşekkürler</p>
-        <h1 className="display mt-4 text-[clamp(2.6rem,6vw,4.8rem)]">Talebiniz not edildi.</h1>
+        <h1 className="display mt-4 text-[clamp(2.6rem,6vw,4.8rem)]">Talebiniz alındı.</h1>
         <div className="mt-8 space-y-4 leading-relaxed text-ink/75">
           <p>
-            Bu sayfa, teklif kaydı gerçekten oluşturulduğunda açılır. Kayıt hattı bağlanmadan form bu adrese yönlendirmez ve talep saklanmaz.
+            Talebiniz ve eklediğiniz dosyalar teknik değerlendirme için iletildi. Bu sayfa yalnızca gönderim başarılı olduğunda açılır.
           </p>
           <p>
-            Kayıt oluştuğunda dönüş, formda yazdığınız telefon veya e-posta üzerinden yapılır. Eksik tolerans varsa üretime geçilmeden sorulur.
+            Dönüş, formda yazdığınız telefon veya e-posta üzerinden yapılır. Eksik tolerans varsa üretime geçilmeden sorulur.
           </p>
         </div>
         <div className="mt-12">

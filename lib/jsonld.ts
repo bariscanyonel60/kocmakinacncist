@@ -1,5 +1,6 @@
 import { company, filled } from "@/data/company";
 import type { Faq } from "@/data/faq";
+import { cloudinaryImageUrl } from "@/lib/cloudinary";
 
 export function jsonLdScript(data: unknown) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -11,7 +12,10 @@ export function organizationJsonLd() {
     "@type": ["Organization", "LocalBusiness"],
     name: company.name,
     url: company.siteUrl,
-    image: new URL("/images/cnc-torna-kesim.jpg", company.siteUrl).toString(),
+    image: new URL(
+      cloudinaryImageUrl("/images/cnc-torna-kesim.jpg", { width: 1200 }),
+      company.siteUrl,
+    ).toString(),
     description:
       "İstanbul'da CNC torna, CNC işleme ve talaşlı imalat yapan üretim firması.",
     address: {

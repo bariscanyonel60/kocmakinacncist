@@ -34,6 +34,10 @@ yarn-error.log*
 .env*
 !.env.example
 
+# hosting API gizli ayarları
+/hosting/koc-api/config.php
+/hosting/*.zip
+
 # netlify
 .netlify
 
@@ -43,3 +47,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.shots

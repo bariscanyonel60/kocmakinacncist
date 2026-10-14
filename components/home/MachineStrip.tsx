@@ -1,27 +1,30 @@
-import Link from "next/link";
 import { machines } from "@/data/machines";
 import { MachineCard } from "@/components/products/MachineCard";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function MachineStrip() {
   return (
     <section className="bg-paper text-ink">
       <Container className="py-20 lg:py-28">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <p className="eyebrow text-accent">Makine parkuru</p>
-            <h2 className="display mt-4 text-[clamp(2.3rem,5vw,4.6rem)]">Teknolojimiz</h2>
-            <p className="mt-4 max-w-xl text-ink/70">Üretimde hassasiyet, doğru teknolojiyle başlar.</p>
-          </div>
-          <Link href="/makine-parkuru" className="text-xs font-semibold tracking-[0.18em] uppercase hover:text-accent">
-            Parkuru incele →
-          </Link>
-        </div>
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {machines.map((machine) => (
-            <MachineCard key={machine.id} machine={machine} />
+        <SectionHeader
+          index="06"
+          eyebrow="Makine parkuru"
+          title={["Teknolojimiz"]}
+          description="Üretimde hassasiyet, doğru teknolojiyle başlar."
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {machines.map((machine, index) => (
+            <Reveal key={machine.id} delay={index * 0.08} className="h-full">
+              <MachineCard machine={machine} compact />
+            </Reveal>
           ))}
         </div>
+        <ArrowLink href="/makine-parkuru" variant="dark" className="mt-10">
+          Tüm makine parkurunu incele
+        </ArrowLink>
       </Container>
     </section>
   );

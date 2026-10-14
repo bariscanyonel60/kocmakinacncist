@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 import { company } from "@/data/company";
+import { cloudinaryEnabled, cloudinaryImageUrl } from "@/lib/cloudinary";
 
-const defaultDescription =
-  "KOC Makina; İstanbul'da CNC torna, CNC işleme, talaşlı imalat ve hassas parça üretimi çözümleri sunar. Projeniz için bizimle iletişime geçin.";
+const shareImage = {
+  url: cloudinaryImageUrl("/images/cnc-torna-kesim.jpg", { width: 1200 }),
+  width: cloudinaryEnabled ? 1200 : 2400,
+  height: cloudinaryEnabled ? 800 : 1600,
+  alt: "CNC tornada kesici takım ile işlenen çelik mil",
+};
+
+export const homeTitle = "Koç Makina | CNC Torna, CNC Freze ve Hassas Talaşlı İmalat";
+
+export const defaultDescription =
+  "Koç Makina; CNC torna, CNC freze, hassas talaşlı imalat, prototip ve seri parça üretimi çözümleri sunar.";
 
 type PageMetaInput = {
   title: string;
@@ -34,25 +44,13 @@ export function pageMeta({
       siteName: company.name,
       locale: "tr_TR",
       type: "website",
-      images: [
-        {
-          url: "/images/cnc-torna-kesim.jpg",
-          width: 2400,
-          height: 1600,
-          alt: "CNC tornada kesici takım ile işlenen çelik mil",
-        },
-      ],
+      images: [shareImage],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [
-        {
-          url: "/images/cnc-torna-kesim.jpg",
-          alt: "CNC tornada kesici takım ile işlenen çelik mil",
-        },
-      ],
+      images: [shareImage],
     },
   };
 }
@@ -60,7 +58,7 @@ export function pageMeta({
 export const rootMetadata: Metadata = {
   metadataBase: new URL(company.siteUrl),
   title: {
-    default: "CNC Torna İstanbul | Hassas CNC İşleme | KOC Makina",
+    default: homeTitle,
     template: `%s | ${company.shortName}`,
   },
   description: defaultDescription,
@@ -71,29 +69,17 @@ export const rootMetadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
   openGraph: {
-    title: "CNC Torna İstanbul | Hassas CNC İşleme | KOC Makina",
+    title: homeTitle,
     description: defaultDescription,
     siteName: company.name,
     locale: "tr_TR",
     type: "website",
-    images: [
-      {
-        url: "/images/cnc-torna-kesim.jpg",
-        width: 2400,
-        height: 1600,
-        alt: "CNC tornada kesici takım ile işlenen çelik mil",
-      },
-    ],
+    images: [shareImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CNC Torna İstanbul | Hassas CNC İşleme | KOC Makina",
+    title: homeTitle,
     description: defaultDescription,
-    images: [
-      {
-        url: "/images/cnc-torna-kesim.jpg",
-        alt: "CNC tornada kesici takım ile işlenen çelik mil",
-      },
-    ],
+    images: [shareImage],
   },
 };

@@ -16,7 +16,7 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "CNC Üretiminin Uygulama Alanları",
   description:
-    "KOC Makina'nın CNC torna ve talaşlı imalat çözümlerinin değerlendirilebileceği sektörler. Liste müşteri referansı değildir.",
+    "Koç Makina'nın CNC torna ve talaşlı imalat çözümlerinin değerlendirilebileceği sektörler. Liste müşteri referansı değildir.",
   path: "/sektorler",
 });
 

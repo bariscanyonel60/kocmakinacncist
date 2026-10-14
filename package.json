@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cloudinary:upload": "node --env-file=.env.local scripts/cloudinary-upload.mjs"
   },
   "dependencies": {
     "framer-motion": "^14.2.0",

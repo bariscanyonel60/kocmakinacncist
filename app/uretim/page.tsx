@@ -17,7 +17,7 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "CNC Üretim Süreci",
   description:
-    "KOC Makina'da üretim; teknik talep, değerlendirme, plan, CNC işleme, kalite kontrol ve teslimat adımlarından oluşur.",
+    "Koç Makina'da üretim; teknik talep, değerlendirme, plan, CNC işleme, kalite kontrol ve teslimat adımlarından oluşur.",
   path: "/uretim",
 });
 

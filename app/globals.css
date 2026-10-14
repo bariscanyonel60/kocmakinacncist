@@ -73,7 +73,7 @@ summary::-webkit-details-marker {
 }
 
 .marquee-track {
-  animation: marquee 46s linear infinite;
+  animation: marquee 64s linear infinite;
 }
 
 @keyframes marquee {

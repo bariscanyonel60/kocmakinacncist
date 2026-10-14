@@ -5,29 +5,39 @@ import { EngineeringBand } from "@/components/home/EngineeringBand";
 import { FaqList } from "@/components/home/FaqList";
 import { Hero } from "@/components/home/Hero";
 import { MachineStrip } from "@/components/home/MachineStrip";
+import { PrecisionStatement } from "@/components/home/PrecisionStatement";
+import { ProcessFeature } from "@/components/home/ProcessFeature";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
-import { QuoteBand } from "@/components/home/QuoteBand";
+import { ProjectGrid } from "@/components/home/ProjectGrid";
+import { QualitySection } from "@/components/home/QualitySection";
 import { ReviewList } from "@/components/home/ReviewList";
+import { RfqSection } from "@/components/home/RfqSection";
 import { SectorGrid } from "@/components/home/SectorGrid";
-import { TurningFeature } from "@/components/home/TurningFeature";
 import { GalleryExplorer } from "@/components/gallery/GalleryExplorer";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Container } from "@/components/ui/Container";
-import { galleryItems } from "@/data/gallery";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { processFeatures } from "@/data/capabilities";
 import { homeFaqs } from "@/data/faq";
+import { projects } from "@/data/projects";
 import { faqJsonLd } from "@/lib/jsonld";
-import { pageMeta } from "@/lib/seo";
-import Link from "next/link";
+import { getGalleryItems } from "@/lib/media";
+import { defaultDescription, homeTitle, pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "CNC Torna İstanbul | Hassas CNC İşleme | KOC Makina",
-  description:
-    "KOC Makina; İstanbul'da CNC torna, CNC işleme, talaşlı imalat ve hassas parça üretimi çözümleri sunar. Projeniz için bizimle iletişime geçin.",
+  title: homeTitle,
+  description: defaultDescription,
   path: "/",
   absolute: true,
 });
 
-export default function HomePage() {
+export default async function HomePage() {
+  const galleryItems = await getGalleryItems();
+  const [turning, milling] = processFeatures;
+  const offset = projects.length > 0 ? 1 : 0;
+  const number = (value: number) => String(value + offset).padStart(2, "0");
+
   return (
     <>
       <JsonLd data={faqJsonLd(homeFaqs)} />
@@ -35,28 +45,34 @@ export default function HomePage() {
       <CapabilityMarquee />
       <AboutBand />
       <CapabilityGrid />
-      <TurningFeature />
-      <ProcessTimeline />
+      {turning ? <ProcessFeature feature={turning} /> : null}
+      {milling ? <ProcessFeature feature={milling} reverse /> : null}
+      <ProcessTimeline index="05" />
       <MachineStrip />
       <EngineeringBand />
-      <SectorGrid />
+      <QualitySection index="07" />
+      <PrecisionStatement />
+      <SectorGrid index="08" />
+      <ProjectGrid index="09" />
       <section className="bg-white">
         <Container className="py-20 lg:py-28">
-          <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <p className="eyebrow text-accent">Galeri</p>
-              <h2 className="display mt-4 text-[clamp(2.3rem,5vw,4.6rem)]">Üretimden detaylar</h2>
-            </div>
-            <Link href="/galeri" className="text-xs font-semibold tracking-[0.18em] uppercase hover:text-accent">
-              Tüm galeri →
-            </Link>
-          </div>
+          <SectionHeader
+            index={number(9)}
+            eyebrow="Galeri"
+            title={["Üretimden", "detaylar"]}
+            className="mb-10"
+            action={
+              <ArrowLink href="/galeri" variant="text">
+                Tüm galeri
+              </ArrowLink>
+            }
+          />
           <GalleryExplorer items={galleryItems.slice(0, 6)} showFilters={false} />
         </Container>
       </section>
-      <FaqList faqs={homeFaqs} />
+      <FaqList faqs={homeFaqs} index={number(10)} />
       <ReviewList />
-      <QuoteBand />
+      <RfqSection index={number(11)} />
     </>
   );
 }

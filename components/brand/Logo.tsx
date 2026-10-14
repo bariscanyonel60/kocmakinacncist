@@ -1,26 +1,39 @@
+import Image from "next/image";
 import Link from "next/link";
+import { company } from "@/data/company";
 import { cn } from "@/lib/cn";
 
-export function Logo({ tone = "light" }: { tone?: "light" | "dark" }) {
-  const onDark = tone === "light";
+const LOGO_WIDTH = 2129;
+const LOGO_HEIGHT = 653;
 
+export function LogoImage({
+  tone = "light",
+  className,
+  sizes,
+  preload = false,
+}: {
+  tone?: "light" | "dark";
+  className?: string;
+  sizes: string;
+  preload?: boolean;
+}) {
   return (
-    <Link href="/" className={cn("flex items-center gap-3", onDark ? "text-white" : "text-ink")}>
-      <span
-        className={cn(
-          "relative grid h-10 w-10 shrink-0 place-items-center border",
-          onDark ? "border-white/25" : "border-ink/15",
-        )}
-      >
-        <span className="absolute left-0 top-0 h-2.5 w-2.5 border-l-2 border-t-2 border-accent" />
-        <span className="font-display text-sm font-semibold tracking-tight">K</span>
-      </span>
-      <span className="leading-none">
-        <span className="block font-display text-[15px] font-semibold tracking-[0.16em]">KOC MAKİNA</span>
-        <span className={cn("mt-1 block text-[10px] tracking-[0.26em]", onDark ? "text-metal" : "text-ink/55")}>
-          CNC · İSTANBUL
-        </span>
-      </span>
+    <Image
+      src={tone === "light" ? "/images/koc-makina-logo-light.png" : "/images/koc-makina-logo.png"}
+      alt={company.name}
+      width={LOGO_WIDTH}
+      height={LOGO_HEIGHT}
+      sizes={sizes}
+      preload={preload}
+      className={cn("h-auto", className)}
+    />
+  );
+}
+
+export function Logo({ tone = "light" }: { tone?: "light" | "dark" }) {
+  return (
+    <Link href="/" aria-label={`${company.name} ana sayfa`} className="flex shrink-0 items-center">
+      <LogoImage tone={tone} sizes="180px" preload className="w-[116px] sm:w-[172px]" />
     </Link>
   );
 }

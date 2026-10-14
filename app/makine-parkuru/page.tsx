@@ -18,7 +18,7 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "Makine Parkuru",
   description:
-    "KOC Makina CNC torna ve CNC işleme parkurunun teknik kartları. Marka, kapasite ve hassasiyet bilgileri girildiğinde bu sayfada görünür.",
+    "Koç Makina CNC torna ve CNC işleme parkurunun teknik kartları. Marka, kapasite ve hassasiyet bilgileri girildiğinde bu sayfada görünür.",
   path: "/makine-parkuru",
 });
 

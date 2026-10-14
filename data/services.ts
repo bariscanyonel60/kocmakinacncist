@@ -29,10 +29,10 @@ export const services: Service[] = [
     imageAlt: "CNC tornada kesici uç ile işlenen çelik mil, ayna ve punta",
     seoTitle: "CNC Torna İstanbul",
     seoDescription:
-      "KOC Makina, İstanbul'da CNC torna ile mil, burç, flanş ve özel döner parçalar üretir. Teknik çiziminizi gönderin, üretim ihtiyacınızı birlikte değerlendirelim.",
+      "Koç Makina, İstanbul'da CNC torna ile mil, burç, flanş ve özel döner parçalar üretir. Teknik çiziminizi gönderin, üretim ihtiyacınızı birlikte değerlendirelim.",
     h1: "CNC Torna ile Hassas Parça Üretimi",
     intro:
-      "CNC torna, dönen iş parçasından kesici takımla talaş kaldırarak silindirik ve eksenel formlar üretir. KOC Makina bu yöntemi İstanbul'da, teknik çizime bağlı metal parça üretimi için kullanır.",
+      "CNC torna, dönen iş parçasından kesici takımla talaş kaldırarak silindirik ve eksenel formlar üretir. Koç Makina bu yöntemi İstanbul'da, teknik çizime bağlı metal parça üretimi için kullanır.",
     paragraphs: [
       "Mil, burç, flanş, pim, kovan ve diş açılacak gövdeler CNC torna ile işlenen tipik parça aileleridir. Çap, boy, kanal, pah ve vida adımı teknik resimdeki değerlere göre programlanır. Parça hem dönen hem de düzlemsel yüzey istiyorsa torna operasyonu CNC işleme ile tamamlanır.",
       "İstanbul CNC torna taleplerinde teklif, malzeme cinsi, ham ölçü, tolerans, operasyon sayısı ve adede göre çıkar. Sabit bir birim fiyat listesi tutulmaz. Seri üretimde bağlama ve kontrol planı, prototipte ise geometrinin ilk doğrulanması öne çıkar. Özel parça imalatı da aynı hattın içindedir; katalog parça satışı yapılmaz.",
@@ -88,12 +88,12 @@ export const services: Service[] = [
     imageAlt: "CNC işleme merkezinde metal parça frezelenirken dağılan talaş",
     seoTitle: "CNC İşleme İstanbul",
     seoDescription:
-      "İstanbul'da CNC işleme ile cep, kontur, delik ve yüzey operasyonları. KOC Makina teknik çizime göre metal parça işler.",
+      "İstanbul'da CNC işleme ile cep, kontur, delik ve yüzey operasyonları. Koç Makina teknik çizime göre metal parça işler.",
     h1: "CNC İşleme ile Prizmatik Parça Üretimi",
     intro:
       "CNC işleme, döner kesici takımın programlı yollarla metal üzerinden talaş kaldırdığı frezeleme yöntemidir. Cep, kanal, kontur, delik dizisi ve alın yüzeyleri bu yöntemle çıkar.",
     paragraphs: [
-      "Torna, eksenel simetriyi iyi çözer. Parça plaka, blok veya döküm gövdeyse ve üzerinde düzlem, cep ya da konum toleranslı delik varsa CNC işleme devreye girer. KOC Makina İstanbul'da bu operasyonları talaşlı imalat planının parçası olarak ele alır.",
+      "Torna, eksenel simetriyi iyi çözer. Parça plaka, blok veya döküm gövdeyse ve üzerinde düzlem, cep ya da konum toleranslı delik varsa CNC işleme devreye girer. Koç Makina İstanbul'da bu operasyonları talaşlı imalat planının parçası olarak ele alır.",
       "İşleme süresi takım yolu uzunluğuna, talaş derinliğine ve bağlama sayısına bağlıdır. Tek bağlamada biten parça ile iki yüzü ayrı bağlanan parça aynı teklif mantığına girmez. Hassas parça üretiminde delik konumları ve yüzey ilişkisi resimden okunur; ölçü uydurulmaz.",
     ],
     advantages: [
@@ -147,10 +147,10 @@ export const services: Service[] = [
     imageAlt: "Alın freze kafası silindirik metal parçanın üzerinde",
     seoTitle: "Talaşlı İmalat İstanbul",
     seoDescription:
-      "KOC Makina İstanbul'da talaşlı imalat kapsamında CNC torna ve CNC işleme ile metal parça üretir. Çiziminizi paylaşın.",
+      "Koç Makina İstanbul'da talaşlı imalat kapsamında CNC torna ve CNC işleme ile metal parça üretir. Çiziminizi paylaşın.",
     h1: "Talaşlı İmalat ile Metal Parça Üretimi",
     intro:
-      "Talaşlı imalat, hedef formu elde etmek için metalden talaş kaldırmaktır. KOC Makina'da bu kapsam CNC torna, CNC işleme, delik delme ve diş açma operasyonlarını bir arada tutar.",
+      "Talaşlı imalat, hedef formu elde etmek için metalden talaş kaldırmaktır. Koç Makina'da bu kapsam CNC torna, CNC işleme, delik delme ve diş açma operasyonlarını bir arada tutar.",
     paragraphs: [
       "Sac kesim, kaynaklı konstrüksiyon veya dökümhane işi bu başlığın yerine geçmez. Parça işlenmiş metal yüzey, çap veya konum toleransı istiyorsa talaşlı imalat doğru yoldur. Ham malzeme çubuk, plaka veya ön şekillendirilmiş gövde olabilir; hangisinin uygun olduğu resme bakılarak söylenir.",
       "İstanbul talaşlı imalat taleplerinde önce yöntem ayrılır: parça dönecekse torna, prizmatikse işleme, ikisi birden gerekiyorsa operasyon sırası yazılır. Seri üretimde bu sıra sabitlenir. Özel parça imalatında ise aynı plan tek seferlik kurulur ve numune üzerinden doğrulanır.",
@@ -172,7 +172,7 @@ export const services: Service[] = [
       {
         question: "Talaşlı imalat ile CNC aynı şey mi?",
         answer:
-          "CNC, talaşlı imalatın programlı tezgâhla yapılan halidir. Klasik tezgahta da talaş kaldırılır. KOC Makina'nın odağı CNC torna ve CNC işlemedir.",
+          "CNC, talaşlı imalatın programlı tezgâhla yapılan halidir. Klasik tezgahta da talaş kaldırılır. Koç Makina'nın odağı CNC torna ve CNC işlemedir.",
       },
       {
         question: "Hangi malzemeler işlenir?",
@@ -206,10 +206,10 @@ export const services: Service[] = [
     imageAlt: "İnce freze takımı ile işlenen bakır alaşım parça",
     seoTitle: "Hassas Parça Üretimi İstanbul",
     seoDescription:
-      "KOC Makina, İstanbul'da teknik resimdeki ölçülere bağlı hassas parça üretimi yapar. CNC torna ve CNC işleme ile metal parçalar hazırlanır.",
+      "Koç Makina, İstanbul'da teknik resimdeki ölçülere bağlı hassas parça üretimi yapar. CNC torna ve CNC işleme ile metal parçalar hazırlanır.",
     h1: "Hassas Parça Üretimi",
     intro:
-      "Hassas parça üretimi, ölçünün tesadüfe bırakılmadığı talaşlı imalattır. KOC Makina, teknik resimdeki çap, konum ve yüzey ilişkilerini CNC torna ve CNC işleme planının merkezine koyar.",
+      "Hassas parça üretimi, ölçünün tesadüfe bırakılmadığı talaşlı imalattır. Koç Makina, teknik resimdeki çap, konum ve yüzey ilişkilerini CNC torna ve CNC işleme planının merkezine koyar.",
     paragraphs: [
       "Hassasiyet, ilan edilen sabit bir tolerans rakamı değildir. Her parçanın kabul aralığı kendi resmindedir. Dar tolerans, daha kontrollü paso, daha net bağlama ve teslim öncesi ölçü kontrolü demektir. Bu yüzden teklifte tolerans ayrıca okunur.",
       "Metal parça üretiminde tekrar edilebilirlik, ilk parçanın tutması kadar sonraki parçaların da aynı aralıkta kalmasıdır. Prototipte kurulan referans, seri üretimde aynı datum üzerinden sürdürülür. İstanbul'daki üretim taleplerinde çizim eksikse kritik ölçüler sorulur; varsayımla işlenmez.",
@@ -265,10 +265,10 @@ export const services: Service[] = [
     imageAlt: "Prototip niteliğinde karmaşık metal parçanın CNC ile işlenmesi",
     seoTitle: "Prototip CNC Üretim",
     seoDescription:
-      "KOC Makina, teknik çizim veya numuneden prototip metal parça işler. CNC torna ve CNC işleme ile İstanbul'da küçük adet üretim.",
+      "Koç Makina, teknik çizim veya numuneden prototip metal parça işler. CNC torna ve CNC işleme ile İstanbul'da küçük adet üretim.",
     h1: "Prototip Üretim",
     intro:
-      "Prototip üretim, bir parçanın geometrisini ve ölçüsünü seriye geçmeden görmek için yapılır. KOC Makina tek parça ve küçük adet taleplerini CNC torna ve CNC işleme ile değerlendirir.",
+      "Prototip üretim, bir parçanın geometrisini ve ölçüsünü seriye geçmeden görmek için yapılır. Koç Makina tek parça ve küçük adet taleplerini CNC torna ve CNC işleme ile değerlendirir.",
     paragraphs: [
       "Tasarım henüz kilitlenmemişse prototip, resimdeki riskli ölçüleri ortaya çıkarır. Duvar kalınlığı, bağlama payı veya takımın giremeyeceği köşe bu aşamada konuşulur. Amaç vitrin parçası değil, sonraki üretime veri olan bir parçadır.",
       "Numune ile gelen taleplerde mevcut parça referans alınır; yine de kritik ölçüler yazılı hale getirilir. Prototip onayı olmadan seri adede geçilmez. İstanbul içinde çizim paylaşımı dijital yürür, fiziksel numune gerekiyorsa ayrıca planlanır.",
@@ -324,10 +324,10 @@ export const services: Service[] = [
     imageAlt: "Seri parça işleyen CNC torna taretinde talaş ve kesici takımlar",
     seoTitle: "CNC Seri Üretim",
     seoDescription:
-      "KOC Makina, tekrarlanan metal parçalar için CNC seri üretim planlar. İstanbul'da torna ve işleme operasyonları adede göre kurgulanır.",
+      "Koç Makina, tekrarlanan metal parçalar için CNC seri üretim planlar. İstanbul'da torna ve işleme operasyonları adede göre kurgulanır.",
     h1: "Seri Üretim Planı",
     intro:
-      "Seri üretim, aynı parçanın tekrarında ölçü dağılımını dar tutmaktır. KOC Makina bu işi kapasite iddiasıyla değil, operasyon sırasını ve kontrol noktalarını sabitleyerek ele alır.",
+      "Seri üretim, aynı parçanın tekrarında ölçü dağılımını dar tutmaktır. Koç Makina bu işi kapasite iddiasıyla değil, operasyon sırasını ve kontrol noktalarını sabitleyerek ele alır.",
     paragraphs: [
       "Adet arttıkça bağlama, takım ömrü ve ara kontrol önem kazanır. İlk parçası tutan bir iş, yüzüncü parçada aynı kalmayabilir; bunun için referans ve kontrol aralığı baştan yazılır. Parti bölünecekse her teslimatta aynı resim revizyonu esas alınır.",
       "Fiyat, birim başına düşen hazırlık süresi azaldıkça değişir. Yine de malzeme, tolerans ve fire bu hesabın içindedir. İstanbul'da CNC torna veya CNC işleme ile yürüyen serilerde ham malzeme temini sipariş onayına bağlı planlanır. Stoktan sürekli üretim vaadi verilmez.",
@@ -383,10 +383,10 @@ export const services: Service[] = [
     imageAlt: "Projeye özel işlenmiş alüminyum gövde, kanal ve diş detayları",
     seoTitle: "Özel Parça İmalatı",
     seoDescription:
-      "KOC Makina, katalog ürünü olmayan metal parçaları CNC torna ve CNC işleme ile üretir. Çizim veya numune gönderin.",
+      "Koç Makina, katalog ürünü olmayan metal parçaları CNC torna ve CNC işleme ile üretir. Çizim veya numune gönderin.",
     h1: "Özel Parça İmalatı",
     intro:
-      "Özel parça imalatı, rafta hazır karşılığı olmayan komponentin işlenmesidir. KOC Makina bu parçaları stok koduyla değil, gelen teknik resim veya numuneyle üretir.",
+      "Özel parça imalatı, rafta hazır karşılığı olmayan komponentin işlenmesidir. Koç Makina bu parçaları stok koduyla değil, gelen teknik resim veya numuneyle üretir.",
     paragraphs: [
       "Makine yenileme, tek seferlik aparat veya düşük adetli ekipman parçaları bu kapsamdadır. Parça eskiyse numune ölçü için referans olur; aşınmış yüzeyler yeni parçaya olduğu gibi kopyalanmaz, çalışan ölçü sorulur.",
       "Özel iş, standart işten daha az disiplinli değildir. Malzeme, tolerans ve teslim aynı sorularla açılır. CNC torna veya CNC işleme seçimi geometriye göre yapılır. İstanbul'daki taleplerde çizim eksikse üretim başlamaz.",
@@ -442,13 +442,13 @@ export const services: Service[] = [
     imageAlt: "CNC torna takım taretinde üretime hazır kesici takımlar",
     seoTitle: "Teknik Üretim Çözümleri",
     seoDescription:
-      "KOC Makina, metal parçalar için üretilebilirlik ve operasyon planı çıkarır. İstanbul'da CNC torna ve CNC işleme kararını çizim üzerinden verir.",
+      "Koç Makina, metal parçalar için üretilebilirlik ve operasyon planı çıkarır. İstanbul'da CNC torna ve CNC işleme kararını çizim üzerinden verir.",
     h1: "Teknik Üretim Çözümleri",
     intro:
-      "Teknik üretim çözümü, parçayı tezgâha almadan önce doğru yöntemi seçmektir. KOC Makina, gelen resmi CNC torna, CNC işleme veya birleşik rota olarak ayırır.",
+      "Teknik üretim çözümü, parçayı tezgâha almadan önce doğru yöntemi seçmektir. Koç Makina, gelen resmi CNC torna, CNC işleme veya birleşik rota olarak ayırır.",
     paragraphs: [
       "Bazı çizimler ölçü olarak doğrudur ama bağlanamaz, takım giremez veya tolerans seçilen yöntemle tutmaz. Bu durumda işlemeye zorlamak yerine üretilebilirlik notu verilir. Not; duvar, köşe radyüsü, datum ve gereksiz dar tolerans üzerine olur.",
-      "Bu başlık bağımsız bir mühendislik ofisi hizmeti değildir. Çıktı, KOC Makina'nın işleyebileceği bir üretim planıdır. Malzeme önerisi de stok listesi gibi değil, işlenebilirlik açısından yapılır. İstanbul'daki projelerde çizim revize edilecekse yeni revizyon onayı alınmadan üretime geçilmez.",
+      "Bu başlık bağımsız bir mühendislik ofisi hizmeti değildir. Çıktı, Koç Makina'nın işleyebileceği bir üretim planıdır. Malzeme önerisi de stok listesi gibi değil, işlenebilirlik açısından yapılır. İstanbul'daki projelerde çizim revize edilecekse yeni revizyon onayı alınmadan üretime geçilmez.",
     ],
     advantages: [
       { title: "Rota kararı", text: "Torna, freze veya ikisi; parça özelinde yazılır." },

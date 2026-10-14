@@ -7,7 +7,7 @@ function Strip({ hidden = false }: { hidden?: boolean }) {
         <li key={item} className="flex items-center">
           <span className="px-6 font-display text-sm tracking-[0.22em] uppercase md:text-base">{item}</span>
           <span className="text-accent" aria-hidden="true">
-            •
+            /
           </span>
         </li>
       ))}

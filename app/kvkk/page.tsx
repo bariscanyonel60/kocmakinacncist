@@ -4,7 +4,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "KVKK Aydınlatma",
   description:
-    "KOC Makina teklif formundaki ad, telefon ve e-posta neden istenir, nereye aktarılmaz ve silme talebi nereye yazılır.",
+    "Koç Makina teklif formundaki ad, telefon ve e-posta neden istenir, nereye aktarılmaz ve silme talebi nereye yazılır.",
   path: "/kvkk",
 });
 
@@ -25,7 +25,7 @@ export default function KvkkPage() {
         {
           heading: "Aktarım ve süre",
           paragraphs: [
-            "Şu an form verisi sunucuda tutulmaz. Kayıt hattı kurulduğunda veriler yalnızca teklif ve üretim yazışması için saklanır, süre işin kapanmasına ve yasal zamanaşımına bağlı olur.",
+            "Form verisi ve ekli dosyalar sunucuda tutulmaz; e-posta hizmet sağlayıcısı (Resend) üzerinden firma e-posta adresine iletilir. Veriler yalnızca teklif ve üretim yazışması için kullanılır, saklama süresi işin kapanmasına ve yasal zamanaşımına bağlıdır.",
             "VERBİS numarası ve açık adres, doğrulanmadan bu sayfaya yazılmaz.",
           ],
         },

@@ -18,7 +18,7 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "CNC Hizmetleri İstanbul",
   description:
-    "KOC Makina'nın CNC torna, CNC işleme, talaşlı imalat, hassas parça, prototip ve seri üretim hizmetleri.",
+    "Koç Makina'nın CNC torna, CNC işleme, talaşlı imalat, hassas parça, prototip ve seri üretim hizmetleri.",
   path: "/hizmetler",
 });
 

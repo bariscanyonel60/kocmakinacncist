@@ -17,7 +17,7 @@ const crumbs = [
 export const metadata = pageMeta({
   title: "Kurumsal",
   description:
-    "KOC Makina, İstanbul'da CNC torna ve hassas talaşlı imalat yapan bir üretim firmasıdır. Yaklaşımımız teknik resim, plan ve ölçü kontrolüdür.",
+    "Koç Makina, İstanbul'da CNC torna ve hassas talaşlı imalat yapan bir üretim firmasıdır. Yaklaşımımız teknik resim, plan ve ölçü kontrolüdür.",
   path: "/kurumsal",
 });
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="Kurumsal"
         title="Teknik resimden üretime"
-        description="KOC Makina, İstanbul'da CNC torna ve talaşlı imalat ile metal parça üretir. Anlatım, doğrulanmış işin sınırında kalır."
+        description="Koç Makina, İstanbul'da CNC torna ve talaşlı imalat ile metal parça üretir. Anlatım, doğrulanmış işin sınırında kalır."
         image="/images/cnc-torna-mil.jpg"
         imageAlt="CNC tornada işlenen çelik mil"
       />
@@ -36,7 +36,7 @@ export default function AboutPage() {
       <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:py-24">
         <article className="space-y-5 text-base leading-relaxed text-ink/80 lg:col-span-7">
           <p>
-            KOC Makina, İstanbul&apos;da CNC torna ve hassas talaşlı imalat alanlarında üretim çözümleri sunan bir sanayi kuruluşudur. İşin merkezi gösterişli vaat değil, parçanın teknik resmidir.
+            Koç Makina, İstanbul&apos;da CNC torna ve hassas talaşlı imalat alanlarında üretim çözümleri sunan bir sanayi kuruluşudur. İşin merkezi gösterişli vaat değil, parçanın teknik resmidir.
           </p>
           <p>
             Gelen talep önce geometri, malzeme ve tolerans olarak okunur. Parça döner formdaysa CNC torna, prizmatikse CNC işleme, her ikisi gerekiyorsa birleşik rota yazılır. Prototip ile seri üretim aynı kapıdan girer; adet değişince bağlama ve kontrol planı değişir.

@@ -1,8 +1,10 @@
 export const galleryCategories = [
   { id: "tumu", label: "Tümü" },
   { id: "cnc-torna", label: "CNC Torna" },
-  { id: "uretim", label: "Üretim" },
+  { id: "cnc-freze", label: "CNC Freze" },
   { id: "parcalar", label: "Parçalar" },
+  { id: "uretim", label: "Üretim" },
+  { id: "kalite", label: "Kalite" },
   { id: "makine", label: "Makine Parkuru" },
   { id: "atolye", label: "Atölye" },
 ] as const;
@@ -14,6 +16,7 @@ export type GalleryItem = {
   alt: string;
   title: string;
   category: Exclude<GalleryCategory, "tumu">;
+  type?: "image" | "video";
 };
 
 export const galleryItems: GalleryItem[] = [
@@ -45,19 +48,19 @@ export const galleryItems: GalleryItem[] = [
     src: "/images/cnc-freze-talas.jpg",
     alt: "CNC freze kafası metal parçayı işlerken etrafa saçılan talaş",
     title: "Frezeleme anı",
-    category: "uretim",
+    category: "cnc-freze",
   },
   {
     src: "/images/cnc-disli.jpg",
     alt: "Dişli formundaki metal parçanın üzerinde çalışan ince freze takımı",
     title: "Dişli formu işleme",
-    category: "uretim",
+    category: "cnc-freze",
   },
   {
     src: "/images/hassas-freze.jpg",
     alt: "Bakır alaşım parçaya inen ince CNC freze takımı",
     title: "İnce takım geçişi",
-    category: "uretim",
+    category: "cnc-freze",
   },
   {
     src: "/images/motor-blogu.jpg",
@@ -99,7 +102,7 @@ export const galleryItems: GalleryItem[] = [
     src: "/images/cnc-alin-freze.jpg",
     alt: "Silindirik metal parçanın üzerindeki alın freze kafası",
     title: "Alın freze",
-    category: "makine",
+    category: "cnc-freze",
   },
   {
     src: "/images/torna-aynasi.jpg",

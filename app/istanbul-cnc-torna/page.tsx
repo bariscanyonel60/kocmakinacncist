@@ -45,7 +45,7 @@ const faqs: Faq[] = [
 export const metadata = pageMeta({
   title: "İstanbul CNC Torna",
   description:
-    "KOC Makina CNC İstanbul'da CNC torna, CNC işleme ve talaşlı imalat taleplerini teknik çizim üzerinden değerlendirir.",
+    "Koç Makina CNC İstanbul'da CNC torna, CNC işleme ve talaşlı imalat taleplerini teknik çizim üzerinden değerlendirir.",
   path: "/istanbul-cnc-torna",
 });
 
@@ -67,7 +67,7 @@ export default function IstanbulPage() {
       <PageHero
         eyebrow="İstanbul"
         title="İstanbul CNC torna ve hassas işleme"
-        description="KOC Makina'nın üretim odağı İstanbul'dur. Bu sayfa, şehirdeki bir alıcının çizimi nasıl ileteceğini ve teklifin nelere baktığını anlatır."
+        description="Koç Makina'nın üretim odağı İstanbul'dur. Bu sayfa, şehirdeki bir alıcının çizimi nasıl ileteceğini ve teklifin nelere baktığını anlatır."
         image="/images/cnc-alin-freze.jpg"
         imageAlt="Metal parça üzerinde alın freze kafası"
       />
@@ -75,7 +75,7 @@ export default function IstanbulPage() {
       <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:py-24">
         <article className="space-y-5 leading-relaxed text-ink/80 lg:col-span-7">
           <p>
-            İstanbul CNC torna araması çoğu zaman hazır bir fiyat değil, belirli bir parçanın kim tarafından işleneceğini sorar. KOC Makina bu soruyu mil, burç, flanş ve benzeri döner parçalar için teknik resim üzerinden yanıtlar.
+            İstanbul CNC torna araması çoğu zaman hazır bir fiyat değil, belirli bir parçanın kim tarafından işleneceğini sorar. Koç Makina bu soruyu mil, burç, flanş ve benzeri döner parçalar için teknik resim üzerinden yanıtlar.
           </p>
           <p>
             Şehir içi olmanın ölçüsü, uydurma teslim süresi değildir. Çizim dijital gelir, malzeme ve adet netleşir, operasyon yazılır. Parçada cep veya konum toleranslı delik varsa İstanbul CNC işleme aynı değerlendirmeye eklenir. Talaşlı imalat kararı, sac kesim veya kaynakla karıştırılmaz.
