@@ -7,3 +7,28 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# KOC Makina CNC
+
+## Çalıştırma
+
+- `npm run dev` — yerel geliştirme
+- `npm run build` — production derlemesi
+- `npm run lint` — ESLint
+- `npm start` — production sunucusu
+
+## Ortam
+
+- `NEXT_PUBLIC_SITE_URL` canonical, Open Graph ve sitemap adresidir. Örnek: `.env.example`
+- Telefon, e-posta, adres, WhatsApp ve sosyal hesaplar yalnızca `data/company.ts` içinden girilir. Boş bırakılan alan sitede yayınlanmaz.
+
+## Deploy
+
+Netlify, Next.js runtime ile derler. `netlify.toml` içindeki komut `next build`, yayın dizini `.next`.
+
+## Dokunma
+
+- `data/company.ts` içine doğrulanmamış telefon, adres veya sertifika yazma.
+- `data/machines.ts` kapasite alanlarına tahmin değer koyma.
+- `app/api/teklif/route.ts` gerçek depolama bağlanmadan `200` dönmesin.
+
