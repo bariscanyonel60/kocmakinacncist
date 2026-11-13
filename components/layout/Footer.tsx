@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteLogo } from "@/components/ui/SiteLogo";
 import { company, mailHref, mobileHref, phoneHref, whatsappHref } from "@/data/company";
 import { mediaCredit } from "@/data/media-credit";
 import { legalLinks } from "@/data/navigation";
@@ -26,11 +27,9 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-ink text-white">
       <div className="mx-auto grid max-w-[1440px] gap-14 px-5 py-16 md:px-8 lg:grid-cols-[1.25fr_1fr_1fr_1.1fr] lg:px-12 lg:py-20">
         <div>
-          <p className="font-display text-[clamp(3.6rem,9vw,7rem)] leading-[0.82] font-medium tracking-[-0.045em]">
-            KOC
-            <br />
-            MAKİNA
-          </p>
+          <Link href="/" className="block w-[11rem] sm:w-[14rem]" aria-label="Koç Makina ana sayfa">
+            <SiteLogo variant="dark" className="max-h-16 sm:max-h-20" />
+          </Link>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-metal">
             İstanbul Başakşehir İkitelli’de CNC torna, CNC işleme ve hassas talaşlı imalat. Teknik çizimden parçaya.
           </p>

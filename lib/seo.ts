@@ -6,7 +6,7 @@ export function getSiteUrl() {
   return company.siteUrl.replace(/\/$/, "");
 }
 
-export const defaultOgImage = images.hero;
+export const defaultOgImage = images.ogDefault;
 
 type PageMetaInput = {
   title: string;
@@ -35,8 +35,8 @@ export function pageMeta({ title, description, path, image, noIndex }: PageMetaI
       images: [
         {
           url: ogImage,
-          width: 2000,
-          height: 1333,
+          width: 1200,
+          height: 630,
           alt: `${company.name} — CNC torna ve talaşlı imalat`,
         },
       ],

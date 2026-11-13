@@ -1,5 +1,6 @@
 import { company } from "@/data/company";
 import type { FaqItem } from "@/data/faq";
+import { images } from "@/data/media";
 import type { CustomerReview } from "@/data/reviews";
 import { getSiteUrl } from "@/lib/seo";
 
@@ -11,6 +12,7 @@ function organizationBase() {
     "@type": "Organization",
     name: company.name,
     url,
+    logo: new URL(images.logo, url).toString(),
     areaServed: {
       "@type": "City",
       name: company.city,
@@ -42,11 +44,14 @@ export function organizationSchema() {
 }
 
 export function localBusinessSchema() {
+  const url = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: company.name,
-    url: getSiteUrl(),
+    url,
+    logo: new URL(images.logo, url).toString(),
+    image: new URL(images.logo, url).toString(),
     description:
       "İstanbul’da CNC torna, CNC işleme ve hassas talaşlı imalat alanında parça üretimi.",
     address: {

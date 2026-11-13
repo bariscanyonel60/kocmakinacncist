@@ -6,6 +6,7 @@ import { StickyPhoneButton } from "@/components/layout/StickyPhoneButton";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { company } from "@/data/company";
+import { images } from "@/data/media";
 import { reviews } from "@/data/reviews";
 import { defaultDescription, defaultOgImage, defaultTitle, getSiteUrl } from "@/lib/seo";
 import { localBusinessSchema, organizationSchema, reviewsSchema, websiteSchema } from "@/lib/schema";
@@ -31,6 +32,17 @@ export const metadata: Metadata = {
   description: defaultDescription,
   applicationName: company.name,
   alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: images.favicon16, sizes: "16x16", type: "image/png" },
+      { url: images.favicon32, sizes: "32x32", type: "image/png" },
+      { url: images.icon192, sizes: "192x192", type: "image/png" },
+      { url: images.icon512, sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
   openGraph: {
     title: defaultTitle,
     description: defaultDescription,
@@ -41,8 +53,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImageUrl,
-        width: 2000,
-        height: 1333,
+        width: 1200,
+        height: 630,
         alt: `${company.name} — CNC torna ve talaşlı imalat`,
       },
     ],

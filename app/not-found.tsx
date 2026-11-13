@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { InternalLinks } from "@/components/ui/InternalLinks";
+import { SiteLogo } from "@/components/ui/SiteLogo";
 import { phoneHref, company } from "@/data/company";
 
 export const metadata: Metadata = {
@@ -17,6 +18,9 @@ export default function NotFound() {
     <section className="relative overflow-hidden bg-ink px-5 pt-28 pb-20 text-white md:px-8 lg:px-12">
       <div className="tech-grid pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="relative mx-auto w-full max-w-[1440px]">
+        <Link href="/" className="mb-10 block w-[10rem]" aria-label="Koç Makina ana sayfa">
+          <SiteLogo variant="dark" className="max-h-14" />
+        </Link>
         <p className="font-display text-sm tracking-[0.28em] text-accent">404</p>
         <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.4rem,7vw,5.2rem)] leading-[0.92] font-medium tracking-[-0.04em] uppercase">
           Sayfa üretim hattında yok.

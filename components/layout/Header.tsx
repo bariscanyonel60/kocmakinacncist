@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { SiteLogo } from "@/components/ui/SiteLogo";
 import { company, phoneHref } from "@/data/company";
 import { mediaCredit } from "@/data/media-credit";
 import { navigation } from "@/data/navigation";
@@ -55,11 +56,13 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-6 px-5 md:h-[4.5rem] md:px-8 lg:px-12">
-        <Link href="/" onClick={() => setOpen(false)} className="relative z-50 flex items-baseline gap-2.5" aria-label="KOC Makina ana sayfa">
-          <span className="font-display text-[1.35rem] leading-none font-medium tracking-[0.16em] text-white">
-            KOC
-          </span>
-          <span className="text-[10px] tracking-[0.28em] text-metal">MAKİNA</span>
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          className="relative z-50 block w-[7.5rem] shrink-0 sm:w-[8.75rem]"
+          aria-label="Koç Makina ana sayfa"
+        >
+          <SiteLogo variant="dark" priority className="max-h-10 md:max-h-11" />
         </Link>
 
         <nav className="hidden items-center gap-6 xl:flex" aria-label="Ana menü">
@@ -111,6 +114,14 @@ export function Header() {
       {open ? (
       <div id="mobil-menu" className="fixed inset-0 z-40 bg-ink xl:hidden">
         <nav aria-label="Mobil menü" className="flex h-full flex-col px-5 pt-24 pb-8 md:px-8">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className="mb-8 block w-[9rem]"
+            aria-label="Koç Makina ana sayfa"
+          >
+            <SiteLogo variant="dark" className="max-h-12" />
+          </Link>
           <ul className="flex flex-1 flex-col justify-center">
             {navigation.map((item, index) => {
               const current = isCurrent(pathname, item.href);
