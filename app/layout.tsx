@@ -1,97 +1,47 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { StickyPhoneButton } from "@/components/layout/StickyPhoneButton";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
-import { JsonLd } from "@/components/ui/JsonLd";
-import { company } from "@/data/company";
-import { images } from "@/data/media";
-import { reviews } from "@/data/reviews";
-import { defaultDescription, defaultOgImage, defaultTitle, getSiteUrl } from "@/lib/seo";
-import { localBusinessSchema, organizationSchema, reviewsSchema, websiteSchema } from "@/lib/schema";
+import { cloudinaryEnabled } from "@/lib/cloudinary";
+import { rootMetadata } from "@/lib/seo";
 import "./globals.css";
 
-const space = Space_Grotesk({
+const display = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
   variable: "--font-space",
   display: "swap",
 });
 
-const manrope = Manrope({
+const body = Manrope({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-manrope",
+  variable: "--font-body",
   display: "swap",
 });
 
-const ogImageUrl = new URL(defaultOgImage, getSiteUrl()).toString();
-
-export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
-  title: { absolute: defaultTitle },
-  description: defaultDescription,
-  applicationName: company.name,
-  alternates: { canonical: "/" },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: images.favicon16, sizes: "16x16", type: "image/png" },
-      { url: images.favicon32, sizes: "32x32", type: "image/png" },
-      { url: images.icon192, sizes: "192x192", type: "image/png" },
-      { url: images.icon512, sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: ["/favicon.ico"],
-  },
-  openGraph: {
-    title: defaultTitle,
-    description: defaultDescription,
-    locale: "tr_TR",
-    type: "website",
-    siteName: company.name,
-    url: getSiteUrl(),
-    images: [
-      {
-        url: ogImageUrl,
-        width: 1200,
-        height: 630,
-        alt: `${company.name} — CNC torna ve talaşlı imalat`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: defaultTitle,
-    description: defaultDescription,
-    images: [ogImageUrl],
-  },
-  robots: { index: true, follow: true },
-};
+export const metadata: Metadata = rootMetadata;
 
 export const viewport: Viewport = {
   themeColor: "#0B0D10",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr" className={`${space.variable} ${manrope.variable} h-full antialiased`}>
-      <body className="min-h-full">
-        <JsonLd data={[organizationSchema(), localBusinessSchema(), websiteSchema(), reviewsSchema(reviews)]} />
-        <a
-          href="#icerik"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[80] focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
-        >
-          İçeriğe geç
-        </a>
-        <Header />
-        <main id="icerik" className="pb-20 md:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <StickyPhoneButton />
-        <WhatsAppButton />
+    <html
+      lang="tr"
+      data-scroll-behavior="smooth"
+      className={`${display.variable} ${body.variable} h-full`}
+    >
+      <head>
+        {cloudinaryEnabled ? (
+          <>
+            <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+          </>
+        ) : null}
+      </head>
+      <body className="min-h-full max-w-full overflow-x-hidden bg-paper font-sans text-ink antialiased">
+        {children}
       </body>
     </html>
   );

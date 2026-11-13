@@ -1,37 +1,3 @@
-# KOC Makina CNC
-
-İstanbul’da CNC torna ve talaşlı imalat için kurumsal site. Next.js App Router, TypeScript, Tailwind CSS.
-
-## Çalıştırma
-
-```bash
-npm install
-npm run dev
-npm run lint
-npm run build
-```
-
-Geliştirme adresi `http://localhost:3000`.
-
-## Ortam
-
-`NEXT_PUBLIC_SITE_URL` yayın alan adıdır. Tanımlı değilse kanonik adres `https://kocmakinacnc.com` kabul edilir. Canlıya çıkmadan gerçek domain yazılmalıdır.
-
-## Dokunulacak veri
-
-- `data/company.ts` — telefon, WhatsApp, e-posta, adres, sosyal, harita. Boş alan uydurulmaz. WhatsApp butonu ve arama bağlantısı yalnızca değer doluysa görünür.
-- `data/machines.ts` — marka, model, çap, boy, eksen, hassasiyet. Boş değer arayüzde “Bilgi eklenecek” olur.
-- `data/services.ts` — hizmet ekleme veya çıkarma. Sayfalar slug’dan üretilir.
-- `public/images` — temsili stok fotoğraflar. Firma çekimi gelince aynı dosya adıyla değiştirilir. Müşteri projesi gibi yazılmaz.
-
-## Form
-
-`app/api/teklif/route.ts` bilinçli olarak 501 döner. E-posta veya dosya saklama bağlanmadan başarı mesajı gösterilmez.
-
-## Dokunma
-
-Sahte sertifika, yorum, puan, çalışan sayısı, kuruluş yılı, tezgah adedi ve tolerans rakamı eklenmez.
-
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
@@ -41,3 +7,36 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# KOC Makina CNC
+
+## Çalıştırma
+
+- `npm run dev` — yerel geliştirme
+- `npm run build` — production derlemesi
+- `npm run lint` — ESLint
+- `npm start` — production sunucusu
+
+## Ortam
+
+- `NEXT_PUBLIC_SITE_URL` canonical, Open Graph ve sitemap adresidir. Örnek: `.env.example`
+- Cloudinary bilgileri `.env.local` içindedir (git'e girmez). `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` doluysa `next/image`, `lib/cloudinary-loader.ts` ile görselleri Cloudinary'den çeker; boşsa `public/images` kullanılır. `/images/<ad>.jpg` yolu `koc-makina/<ad>` public ID'sine eşlenir. Yeni yerel görseller `npm run cloudinary:upload` ile yüklenir. `CLOUDINARY_API_SECRET` yalnızca sunucuda kullanılır; `NEXT_PUBLIC_` ile açılmaz.
+- Netlify'da `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` ve `NEXT_PUBLIC_CLOUDINARY_FOLDER` build ortamına girilmelidir; admin paneli yüklemesi için `CLOUDINARY_API_KEY` ve `CLOUDINARY_API_SECRET` de eklenir.
+- Veritabanı notu: `u2456160_lo2k1` WordPress DB'sidir (`yw4p_` tablolarına dokunma). Site Next.js tarafında MySQL/PHP kullanmaz.
+- Galeri `lib/media.ts` → `getGalleryItems()` Cloudinary context metadata okur (`use cache`, `cacheTag("media-gallery")`). Yoksa `data/gallery.ts` yedektir.
+- `hosting/koc-api/` eski PHP medya API arşividir; Next.js çağırmaz. Ayrıntı: `hosting/README.md`.
+- Admin paneli: `/admin` (giriş `/admin/giris`), sidebar: Genel bakış / Galeri / Hizmetlerimiz / Makine parkuru / İçerik. Galeri CRUD + hizmet kartları + makine parkuru + site metni Cloudinary raw JSON üzerinden (`_admin/services.json`, `_admin/machines.json`, `_admin/site-content.json`). Gerekli env: `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, cloud name. Oturum `proxy.ts` ile korunur. Mutasyon sonrası `revalidateTag("media-gallery"|"site-content"|"services-content"|"machines-content", "max")`. Hizmet detay paragrafları/SSS `data/services.ts` yedeğindedir; admin yalnızca kart/SEO/giriş alanlarını override eder.
+- Makaleler: `/makaleler` + `/makaleler/[slug]`, içerik `data/articles.ts`. Sitemap ve Kurumsal menüde yer alır. Doğrulanmamış kapasite/yıl/adet uydurma.
+- Telefon, e-posta, adres, WhatsApp ve sosyal hesaplar yalnızca `data/company.ts` içinden girilir. Boş bırakılan alan sitede yayınlanmaz.
+
+## Deploy
+
+Netlify, Next.js runtime ile derler. `netlify.toml` içindeki komut `next build`, yayın dizini `.next`.
+
+## Dokunma
+
+- `data/company.ts` içine doğrulanmamış telefon, adres veya sertifika yazma.
+- `data/machines.ts` kapasite alanlarına tahmin değer koyma.
+- `app/api/teklif/route.ts` talebi Resend ile `QUOTE_TO_EMAIL` adresine iletmeden `200` dönmesin. `RESEND_API_KEY`, `QUOTE_FROM_EMAIL` veya `QUOTE_TO_EMAIL` eksikse `501` döner. Vercel istek gövdesi ~4,5 MB ile sınırlı; ek dosyalar toplam 4 MB.
+- Admin şifresini veya Cloudinary secret değerlerini koda yazma; yalnızca env.
+

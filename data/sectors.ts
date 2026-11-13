@@ -1,68 +1,57 @@
-import { images } from "@/data/media";
-
 export type Sector = {
-  slug: string;
-  title: string;
+  name: string;
+  text: string;
   image: string;
   imageAlt: string;
-  text: string;
 };
 
 export const sectors: Sector[] = [
   {
-    slug: "otomotiv",
-    title: "Otomotiv",
-    image: images.measure,
-    imageAlt: "Metal gövde üzerinde kumpasla ölçü kontrolü",
-    text: "Bağlantı elemanları, burçlar ve gövde detayları gibi dönel veya prizmatik metal parçalar otomotiv tedarikinde sık karşılaşılan geometrilerdir.",
+    name: "Otomotiv",
+    text: "Mil, burç, flanş ve bağlantı parçaları gibi döner ya da prizmatik metal komponentler.",
+    image: "/images/motor-blogu.jpg",
+    imageAlt: "CNC tezgahta işlenen motor bloğu yüzeyi",
   },
   {
-    slug: "makine-sanayi",
-    title: "Makine Sanayi",
-    image: images.latheShop,
-    imageAlt: "Atölyede torna tezgahının kızak ve ayna detayı",
-    text: "Makine gövdelerine ait miller, yataklar ve bağlantı parçaları teknik çizimdeki toleransa göre planlanır.",
+    name: "Makine Sanayi",
+    text: "Makine gövdelerine ve aktarma organlarına giden işlenmiş metal parçalar.",
+    image: "/images/cnc-torna-taret.jpg",
+    imageAlt: "Takım tareti görünen CNC torna iç hacmi",
   },
   {
-    slug: "savunma-sanayi",
-    title: "Savunma Sanayi",
-    image: images.cncChuck,
-    imageAlt: "Endüstriyel CNC torna aynasının yakın planı",
-    text: "Mekanik parçalar, teknik şartname ve malzeme tanımı netleştikten sonra üretim uygunluğu açısından değerlendirilir. Bu başlık bir referans listesi değildir.",
+    name: "Savunma Sanayi",
+    text: "Teknik resme bağlı, tekrar edilebilir ölçü isteyen metal parça ihtiyaçları.",
+    image: "/images/karmasik-parca.jpg",
+    imageAlt: "Karmaşık geometrili metal parçanın frezelenmesi",
   },
   {
-    slug: "endustriyel-ekipman",
-    title: "Endüstriyel Ekipman",
-    image: images.swiss,
-    imageAlt: "CNC tezgah içinde takım ve soğutma hatları",
-    text: "Ekipman üreticilerinin ihtiyaç duyduğu tekrarlı metal parçalar, operasyon sırası ve ölçü kontrolü birlikte ele alınır.",
+    name: "Endüstriyel Ekipman",
+    text: "Ekipman içinde çalışan yataklama, kapak ve bağlantı elemanları.",
+    image: "/images/islenmis-govde.jpg",
+    imageAlt: "Kanalları ve dişleri işlenmiş alüminyum gövde",
   },
   {
-    slug: "otomasyon",
-    title: "Otomasyon",
-    image: images.hero,
-    imageAlt: "CNC frezede kesici takım ve metal talaş",
-    text: "Otomasyon ekipmanlarında kullanılan pimler, flanşlar ve bağlantı gövdeleri çizime göre işlenebilir.",
+    name: "Otomasyon",
+    text: "Hat ekipmanlarında kullanılan pim, mil ve özel bağlama parçaları.",
+    image: "/images/otomasyon-hatti.jpg",
+    imageAlt: "Kabloları ve kontrol panosu görünen endüstriyel otomasyon hattı",
   },
   {
-    slug: "enerji",
-    title: "Enerji",
-    image: images.heavyShaft,
-    imageAlt: "Büyük çaplı işlenmiş çelik milin fabrika içindeki görünümü",
-    text: "Enerji ekipmanlarında kullanılan miller ve bağlantı parçaları, çap, boy ve malzeme bilgisi geldikten sonra değerlendirilir.",
+    name: "Enerji",
+    text: "Şaft, burç ve flanş benzeri, çizime göre işlenen metal bileşenler.",
+    image: "/images/cnc-torna-mil.jpg",
+    imageAlt: "Ayna ile punta arasında tornalanan çelik mil",
   },
   {
-    slug: "yedek-parca",
-    title: "Yedek Parça",
-    image: images.partsBrass,
-    imageAlt: "İşlenmiş pirinç ve metal parçaların yakın planı",
-    text: "Numune veya eski parça üzerinden ölçü alınarak yedek parça üretimi değerlendirilebilir. Kritik ölçüler çizimle doğrulanır.",
+    name: "Yedek Parça",
+    text: "Numune veya eski parça üzerinden ölçü alınarak yenilenebilen komponentler.",
+    image: "/images/metal-parcalar.jpg",
+    imageAlt: "Tornalanmış miller, dişliler ve burçlardan oluşan metal parçalar",
   },
   {
-    slug: "ozel-makine",
-    title: "Özel Makine Parçaları",
-    image: images.turningBrass,
-    imageAlt: "Tornada pirinç parçanın kesici takımla işlenmesi",
-    text: "Katalog ürünü olmayan, tek bir makineye özel parçalar teknik çizimden üretime alınır.",
+    name: "Özel Makine Parçaları",
+    text: "Katalog ürünü olmayan, projeye özel işlenen tekil veya küçük seri parçalar.",
+    image: "/images/hassas-parca.jpg",
+    imageAlt: "Çok delikli, parlatılmış hassas metal parça",
   },
 ];

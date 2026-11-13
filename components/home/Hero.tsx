@@ -1,85 +1,116 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const facts = [
-  { number: "01", label: "CNC Torna" },
-  { number: "02", label: "Hassas İşleme" },
-  { number: "03", label: "Talaşlı İmalat" },
+const specs = [
+  { k: "01", v: "CNC Torna" },
+  { k: "02", v: "Hassas İşleme" },
+  { k: "03", v: "Talaşlı İmalat" },
 ];
 
 export function Hero() {
   const reduce = useReducedMotion();
 
-  const fade = (delay: number) =>
+  const rise = (delay: number) =>
     reduce
-      ? {}
+      ? { initial: false as const, animate: { opacity: 1, y: 0 } }
       : {
-          initial: { opacity: 0, y: 22 },
+          initial: { opacity: 0, y: 18 },
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.7, delay, ease },
         };
 
+  const line = (delay: number) =>
+    reduce
+      ? { initial: false as const, animate: { y: "0%" } }
+      : {
+          initial: { y: "140%" },
+          animate: { y: "0%" },
+          transition: { duration: 0.9, delay, ease },
+        };
+
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-ink text-white">
+    <section className="relative min-h-[88svh] overflow-hidden bg-ink text-white md:min-h-[92svh]">
       <motion.div
         className="absolute inset-0"
-        initial={reduce ? undefined : { scale: 1.06 }}
+        initial={reduce ? false : { scale: 1.06 }}
         animate={{ scale: 1 }}
-        transition={reduce ? undefined : { duration: 1.8, ease }}
+        transition={reduce ? { duration: 0 } : { duration: 1.6, ease }}
       >
         <Image
-          src="/images/hero.webp"
-          alt="CNC freze kesicisinin metal parçayı işlediği yakın plan"
+          src="/images/cnc-torna-kesim.jpg"
+          alt="CNC tornada kesici uç, çelik mil, ayna ve punta ile süren metal işleme — Koç Makina İstanbul"
           fill
-          priority
+          preload
           sizes="100vw"
-          className="object-cover object-[72%_22%] md:object-[62%_center]"
+          quality={65}
+          className="object-cover object-[72%_center] sm:object-[64%_center] md:object-[70%_center]"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/10 md:bg-gradient-to-r md:from-ink md:via-ink/88 md:to-ink/25" />
-      <div className="tech-grid absolute inset-0 opacity-40" aria-hidden="true" />
-      <div className="pointer-events-none absolute top-24 left-5 hidden h-16 w-16 border-t border-l border-white/25 md:block lg:left-12" aria-hidden="true" />
-      <div className="pointer-events-none absolute right-5 bottom-8 hidden h-16 w-16 border-r border-b border-white/25 md:block lg:right-12" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/60 to-ink/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/50" />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] flex-col justify-end px-5 pt-28 pb-8 md:px-8 lg:px-12 lg:pb-12">
-        <motion.p {...fade(0.05)} className="text-[11px] font-semibold tracking-[0.28em] text-white/80 uppercase">
+      <div className="relative mx-auto flex min-h-[88svh] max-w-[1440px] flex-col justify-end px-5 pt-[calc(92px+2.5rem)] pb-10 md:min-h-[92svh] md:px-10 md:pb-12">
+        <motion.p className="eyebrow text-white/80" {...rise(0.05)}>
+          <span className="mr-3 inline-block h-px w-8 bg-accent align-middle" />
           KOC Makina CNC · İstanbul
         </motion.p>
-        <h1 className="mt-5 max-w-[16ch] font-display text-[clamp(1.85rem,8.4vw,6.6rem)] leading-[0.9] font-medium tracking-[-0.04em] uppercase">
-          <motion.span {...fade(0.16)} className="block">
-            Hassas üretim.
-          </motion.span>
-          <motion.span {...fade(0.28)} className="block">
-            Güçlü teknoloji.
-          </motion.span>
+        <h1 className="display mt-4 max-w-[15ch] text-[clamp(2.1rem,6.8vw,5.8rem)] md:mt-5">
+          <span className="-mt-[0.1em] block overflow-hidden pt-[0.1em] pb-[0.05em]">
+            <motion.span className="block" {...line(0.12)}>
+              Hassas CNC üretim.
+            </motion.span>
+          </span>
+          <span className="-mt-[0.1em] block overflow-hidden pt-[0.1em] pb-[0.05em]">
+            <motion.span className="block text-white/90" {...line(0.24)}>
+              İstanbul&apos;da torna ve freze.
+            </motion.span>
+          </span>
         </h1>
-        <motion.p {...fade(0.4)} className="mt-6 max-w-xl text-base leading-relaxed text-white/78 md:text-lg">
-          CNC torna ve hassas talaşlı imalat çözümleriyle projelerinizi yüksek kalite standartlarında üretime dönüştürüyoruz.
+        <motion.p
+          className="mt-6 max-w-xl text-[clamp(0.95rem,2.2vw,1.125rem)] leading-relaxed text-mist"
+          {...rise(0.38)}
+        >
+          İstanbul&apos;da CNC torna, CNC freze ve hassas talaşlı imalat çözümleri. Teknik çizimlerinizi üretime
+          dönüştüren mühendislik odaklı yaklaşım.
         </motion.p>
-        <motion.div {...fade(0.52)} className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="/iletisim">Teklif Al</Button>
-          <Button href="/hizmetler" variant="secondary">
-            Hizmetleri İncele
-            <span aria-hidden="true">→</span>
-          </Button>
+        <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" {...rise(0.46)}>
+          <ArrowLink href="/#teklif-al" arrow={false}>
+            Teknik çizim gönder
+          </ArrowLink>
+          <ArrowLink href="/#yetenekler" variant="outline">
+            Üretim yeteneklerimiz
+          </ArrowLink>
         </motion.div>
 
-        <ul className="mt-12 grid border-t border-white/15 sm:grid-cols-3">
-          {facts.map((fact) => (
-            <li
-              key={fact.number}
-              className="flex items-center gap-4 border-white/15 py-4 sm:border-l sm:px-6 sm:first:border-l-0 sm:first:pl-0"
+        <dl className="mt-12 grid border-t border-white/15 sm:grid-cols-3">
+          {specs.map((item) => (
+            <div
+              key={item.k}
+              className="border-b border-white/15 py-4 sm:border-r sm:border-b-0 sm:px-5 sm:first:pl-0 sm:last:border-r-0"
             >
-              <span className="font-display text-xs text-accent">{fact.number}</span>
-              <span className="text-[11px] tracking-[0.2em] uppercase">{fact.label}</span>
-            </li>
+              <dt className="text-[11px] tracking-[0.22em] text-metal">{item.k}</dt>
+              <dd className="mt-2 font-display text-lg tracking-[0.08em] uppercase">{item.v}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
+
+        <motion.a
+          href="/#yetenekler"
+          className="mt-8 hidden w-fit items-center gap-3 text-[10px] tracking-[0.28em] text-white/55 uppercase transition-colors hover:text-white md:inline-flex"
+          aria-label="Aşağı kaydır — üretim yetenekleri"
+          {...rise(0.55)}
+        >
+          Kaydır
+          <span
+            aria-hidden="true"
+            className={reduce ? "inline-block h-8 w-px bg-white/40" : "hero-scroll-line inline-block h-8 w-px bg-white/40"}
+          />
+        </motion.a>
       </div>
     </section>
   );
