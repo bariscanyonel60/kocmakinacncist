@@ -16,6 +16,15 @@
 # next.js
 /.next/
 /out/
+.worktrees/
+
+# local agent state
+.claude/learning/
+.claude/settings.local.json
+.cursor/learning/
+.kiro/learning/
+**/__pycache__/
+*.pyc
 
 # production
 /build
