@@ -83,14 +83,14 @@ export function ProcessTimeline({ detailed = false, index }: { detailed?: boolea
                 )}
               />
               <p className="text-xs tracking-[0.18em] text-accent">{step.number}</p>
-              <h3
+              <p
                 className={cn(
                   "mt-2 font-display text-2xl uppercase transition-colors duration-300",
                   position === active ? "text-white" : "text-white/70",
                 )}
               >
                 {step.title}
-              </h3>
+              </p>
               <p className="mt-2 text-sm leading-relaxed text-mist">{detailed ? step.detail : step.summary}</p>
             </li>
           ))}

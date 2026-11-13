@@ -33,6 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${display.variable} ${body.variable} h-full`}
     >
       <head>
+        <meta
+          name="google-site-verification"
+          content="qXyiHbK8KvZoO5R0__mvBLVQGxWxGoYacnz5bYjZick"
+        />
         {cloudinaryEnabled ? (
           <>
             <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />

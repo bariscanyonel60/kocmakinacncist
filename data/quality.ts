@@ -6,7 +6,7 @@ export const qualityPillars = [
   },
   {
     number: "02",
-    title: "Kalite Kontrol",
+    title: "İlk ve Son Kontrol",
     text: "İlk parça ölçülmeden seri devam etmez. Parti içinde ara kontrol, teslim öncesinde son kontrol yapılır; sapma gösteren parça sevkiyata çıkmaz.",
   },
   {
