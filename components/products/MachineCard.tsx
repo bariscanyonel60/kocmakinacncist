@@ -21,7 +21,11 @@ export function MachineCard({ machine, compact = false }: { machine: Machine; co
       </div>
       <div className="flex flex-1 flex-col p-5">
         <p className="text-[11px] tracking-[0.2em] text-accent uppercase">{machine.type}</p>
-        <h3 className="mt-2 font-display text-2xl tracking-[-0.03em] uppercase">{machine.name}</h3>
+        {compact ? (
+          <p className="mt-2 font-display text-2xl tracking-[-0.03em] uppercase">{machine.name}</p>
+        ) : (
+          <h3 className="mt-2 font-display text-2xl tracking-[-0.03em] uppercase">{machine.name}</h3>
+        )}
         {machine.summary ? (
           <p className="mt-3 text-sm leading-relaxed text-ink/70">{machine.summary}</p>
         ) : null}

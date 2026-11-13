@@ -22,10 +22,10 @@ export const company = {
   country: "Türkiye",
   tags: ["Makina sanayi", "CNC yedek parça", "Talaşlı imalat"] as const,
   parkSummary: "15\" CNC Torna • 8\" CNC Torna • CNC İşleme • 4 Eksen CNC İşleme • Torna • Freze",
-  instagram: "",
+  instagram: "https://www.instagram.com/kocmakinacnc",
   linkedin: "",
   maps: "",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kocmakinacnc.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kocmakinacnc.com",
 } as const;
 
 /**
