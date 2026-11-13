@@ -1,126 +1,113 @@
-import { images } from "@/data/media";
-
-export const galleryFilters = [
+export const galleryCategories = [
   { id: "tumu", label: "Tümü" },
   { id: "cnc-torna", label: "CNC Torna" },
-  { id: "uretim", label: "Üretim" },
+  { id: "cnc-freze", label: "CNC Freze" },
   { id: "parcalar", label: "Parçalar" },
+  { id: "uretim", label: "Üretim" },
+  { id: "kalite", label: "Kalite" },
   { id: "makine", label: "Makine Parkuru" },
   { id: "atolye", label: "Atölye" },
 ] as const;
 
-export type GalleryFilter = (typeof galleryFilters)[number]["id"];
+export type GalleryCategory = (typeof galleryCategories)[number]["id"];
 
 export type GalleryItem = {
-  id: string;
-  title: string;
-  caption: string;
   src: string;
   alt: string;
-  category: Exclude<GalleryFilter, "tumu">;
-  width: number;
-  height: number;
+  title: string;
+  category: Exclude<GalleryCategory, "tumu">;
+  type?: "image" | "video";
 };
 
 export const galleryItems: GalleryItem[] = [
   {
-    id: "celik-tornalama",
-    title: "Çelik parça tornalama",
-    caption: "Dönen iş parçası, kesici takım ve soğutma. Temsili tornalama karesi.",
-    src: images.shaftTurning,
-    alt: "Çelik milin torna tezgahında soğutma altında işlenmesi",
+    src: "/images/cnc-torna-kesim.jpg",
+    alt: "CNC tornada kesici uç, çelik mil, ayna ve punta",
+    title: "CNC tornada mil işleme",
     category: "cnc-torna",
-    width: 1600,
-    height: 1065,
   },
   {
-    id: "pirinc-dis",
-    title: "Pirinç parçada talaş",
-    caption: "Kesici takım, diş profili ve tezgah üzerinde biriken talaş.",
-    src: images.turningBrass,
-    alt: "Pirinç parçanın tornada işlenmesi sırasında oluşan metal talaş",
+    src: "/images/cnc-torna-mil.jpg",
+    alt: "Punta destekli CNC tornada işlenen uzun mil",
+    title: "Punta destekli torna",
     category: "cnc-torna",
-    width: 2000,
-    height: 3000,
   },
   {
-    id: "freze-talas",
-    title: "CNC frezeleme",
-    caption: "Kesici takımın metale teması ve işlem sırasında dağılan talaş.",
-    src: images.hero,
-    alt: "CNC freze kesicisinin metal parçayı işlemesi",
+    src: "/images/torna-detay.jpg",
+    alt: "Torna kalemi metal çubuğu işlerken oluşan talaş",
+    title: "Talaş detayı",
+    category: "cnc-torna",
+  },
+  {
+    src: "/images/cnc-taret-talas.jpg",
+    alt: "Talaş sıçratan CNC torna tareti ve kesici takımlar",
+    title: "Taret ve takımlar",
+    category: "cnc-torna",
+  },
+  {
+    src: "/images/cnc-freze-talas.jpg",
+    alt: "CNC freze kafası metal parçayı işlerken etrafa saçılan talaş",
+    title: "Frezeleme anı",
+    category: "cnc-freze",
+  },
+  {
+    src: "/images/cnc-disli.jpg",
+    alt: "Dişli formundaki metal parçanın üzerinde çalışan ince freze takımı",
+    title: "Dişli formu işleme",
+    category: "cnc-freze",
+  },
+  {
+    src: "/images/hassas-freze.jpg",
+    alt: "Bakır alaşım parçaya inen ince CNC freze takımı",
+    title: "İnce takım geçişi",
+    category: "cnc-freze",
+  },
+  {
+    src: "/images/motor-blogu.jpg",
+    alt: "Kapalı kabin içinde işlenen motor bloğu ve soğutma sıvısı",
+    title: "Blok yüzey işleme",
     category: "uretim",
-    width: 2000,
-    height: 1333,
   },
   {
-    id: "islenmis-govde",
-    title: "İşlenmiş metal gövdeler",
-    caption: "Cep ve delik içeren, talaşlı imalat sonrası metal parçalar.",
-    src: images.partsBrass,
-    alt: "Cep boşaltılmış işlenmiş metal parçaların yakın planı",
+    src: "/images/karmasik-parca.jpg",
+    alt: "Soğutma sıvısı altında frezelenen karmaşık metal parça",
+    title: "Karmaşık geometri",
     category: "parcalar",
-    width: 2000,
-    height: 1333,
   },
   {
-    id: "olcu-kontrol",
-    title: "Ölçü kontrolü",
-    caption: "Üretim sonrası ölçü doğrulamasını anlatan kontrol karesi.",
-    src: images.measure,
-    alt: "Dijital kumpas ile metal parça ölçümü",
-    category: "uretim",
-    width: 1600,
-    height: 2844,
+    src: "/images/islenmis-govde.jpg",
+    alt: "Kanalları, dişleri ve delikleri görünen işlenmiş alüminyum gövde",
+    title: "İşlenmiş gövde",
+    category: "parcalar",
   },
   {
-    id: "torna-ayna",
-    title: "CNC torna aynası",
-    caption: "Ayna, çene ve iş parçası bağlama düzeni.",
-    src: images.cncChuck,
-    alt: "CNC torna tezgahında ayna ve bağlı metal parça",
+    src: "/images/metal-parcalar.jpg",
+    alt: "Farklı çaplarda tornalanmış miller ve dişliler",
+    title: "Tornalanmış parçalar",
+    category: "parcalar",
+  },
+  {
+    src: "/images/hassas-parca.jpg",
+    alt: "Çok sayıda delik içeren parlatılmış hassas metal parça",
+    title: "Hassas parça",
+    category: "parcalar",
+  },
+  {
+    src: "/images/cnc-torna-taret.jpg",
+    alt: "CNC torna içinde çok istasyonlu takım tareti",
+    title: "Takım tareti",
     category: "makine",
-    width: 2000,
-    height: 1333,
   },
   {
-    id: "kayar-otomat",
-    title: "Tezgah içi",
-    caption: "Takım bölgesi ve soğutma hatlarının göründüğü tezgah içi.",
-    src: images.swiss,
-    alt: "CNC torna tezgahının içindeki takım ve soğutma düzeni",
-    category: "makine",
-    width: 1920,
-    height: 1440,
+    src: "/images/cnc-alin-freze.jpg",
+    alt: "Silindirik metal parçanın üzerindeki alın freze kafası",
+    title: "Alın freze",
+    category: "cnc-freze",
   },
   {
-    id: "atolye-torna",
-    title: "Atölye tezgahı",
-    caption: "Kızak, ayna ve kalemlik düzeninin göründüğü atölye karesi.",
-    src: images.latheShop,
-    alt: "Atölyede torna tezgahının kızak ve ayna bölümü",
+    src: "/images/torna-aynasi.jpg",
+    alt: "Üç ayaklı torna aynası ve iş mili",
+    title: "Torna aynası",
     category: "atolye",
-    width: 2000,
-    height: 2667,
-  },
-  {
-    id: "teknik-cizim",
-    title: "Teknik çizim",
-    caption: "Üretim talebinin çizim ve ölçü üzerinden okunması.",
-    src: images.drawings,
-    alt: "Teknik çizimler üzerinde kumpas ile ölçü incelemesi",
-    category: "uretim",
-    width: 1800,
-    height: 1200,
-  },
-  {
-    id: "buyuk-mil",
-    title: "İşlenmiş mil",
-    caption: "Kademeli çapları görünen büyük ölçekli işlenmiş mil.",
-    src: images.heavyShaft,
-    alt: "Kademeli çaplara sahip büyük çelik mil",
-    category: "parcalar",
-    width: 1600,
-    height: 1067,
   },
 ];

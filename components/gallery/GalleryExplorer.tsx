@@ -1,8 +1,36 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
-import { galleryFilters, type GalleryFilter, type GalleryItem } from "@/data/gallery";
+import { galleryCategories, type GalleryCategory, type GalleryItem } from "@/data/gallery";
+import { cloudinaryVideoUrl } from "@/lib/cloudinary";
+import { cn } from "@/lib/cn";
+
+function categoryLabel(category: GalleryItem["category"]) {
+  switch (category) {
+    case "cnc-torna":
+      return "CNC Torna";
+    case "cnc-freze":
+      return "CNC Freze";
+    case "parcalar":
+      return "Parçalar";
+    case "uretim":
+      return "Üretim";
+    case "kalite":
+      return "Kalite";
+    case "makine":
+      return "Makine Parkuru";
+    case "atolye":
+      return "Atölye";
+    default: {
+      const unreachable: never = category;
+      return unreachable;
+    }
+  }
+}
+
+const swipeThreshold = 48;
 
 export function GalleryExplorer({
   items,
@@ -11,167 +39,189 @@ export function GalleryExplorer({
   items: GalleryItem[];
   showFilters?: boolean;
 }) {
-  const [filter, setFilter] = useState<GalleryFilter>("tumu");
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
+  const [filter, setFilter] = useState<GalleryCategory>("tumu");
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const touchStart = useRef<number | null>(null);
   const titleId = useId();
-
   const visible = filter === "tumu" ? items : items.filter((item) => item.category === filter);
-  const active = visible.find((item) => item.id === activeId) ?? null;
-  const activeIndex = active ? visible.findIndex((item) => item.id === active.id) : -1;
+  const filters = galleryCategories.filter(
+    (category) => category.id === "tumu" || items.some((item) => item.category === category.id),
+  );
+  const active = activeIndex === null ? null : (visible[activeIndex] ?? null);
+
+  const step = (direction: 1 | -1) =>
+    setActiveIndex((current) =>
+      current === null ? current : (current + direction + visible.length) % visible.length,
+    );
 
   useEffect(() => {
-    if (!active) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (active && !dialog.open) dialog.showModal();
+    if (!active && dialog.open) dialog.close();
+  }, [active]);
 
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveId(null);
-      if (event.key === "ArrowRight") {
-        const next = visible[(activeIndex + 1) % visible.length];
-        if (next) setActiveId(next.id);
-      }
-      if (event.key === "ArrowLeft") {
-        const previousItem = visible[(activeIndex - 1 + visible.length) % visible.length];
-        if (previousItem) setActiveId(previousItem.id);
-      }
-    };
-
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = previous;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [active, activeIndex, visible]);
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "ArrowRight") step(1);
+    if (event.key === "ArrowLeft") step(-1);
+    if (event.key === "Escape") dialogRef.current?.close();
+  };
 
   return (
     <div>
       {showFilters ? (
-        <div className="mb-8 flex flex-wrap gap-2" role="toolbar" aria-label="Galeri filtreleri">
-          {galleryFilters.map((item) => {
-            const selected = filter === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={selected}
-                onClick={() => {
-                  setFilter(item.id);
-                  setActiveId(null);
-                }}
-                className={`min-h-11 px-4 text-[11px] tracking-[0.16em] uppercase ${
-                  selected ? "bg-ink text-white" : "border border-ink/15 text-ink hover:border-accent"
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
+        <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Galeri filtreleri">
+          {filters.map((category) => (
+            <button
+              key={category.id}
+              type="button"
+              aria-pressed={filter === category.id}
+              onClick={() => setFilter(category.id)}
+              className={cn(
+                "min-h-11 border px-4 text-[11px] font-semibold tracking-[0.16em] uppercase transition-colors",
+                filter === category.id ? "border-ink bg-ink text-white" : "border-ink/15 text-ink hover:border-accent",
+              )}
+            >
+              {category.label}
+            </button>
+          ))}
         </div>
       ) : null}
 
-      {visible.length === 0 ? (
-        <p className="text-muted">Bu filtrede görsel yok.</p>
-      ) : (
-        <ul className="grid grid-cols-1 gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map((item) => (
-            <li key={item.id} className="bg-paper">
-              <button
-                type="button"
-                onClick={() => setActiveId(item.id)}
-                className="group relative block w-full text-left"
-              >
-                <span className="relative block aspect-[4/5] overflow-hidden bg-ink sm:aspect-[5/4]">
+      <ul className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        {visible.map((item, index) => (
+          <li key={item.src} className="mb-4 break-inside-avoid">
+            <button
+              type="button"
+              className="group relative block w-full overflow-hidden bg-ink text-left"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`${item.title} görselini büyüt`}
+            >
+              <span className={cn("relative block", index % 3 === 0 ? "aspect-[4/5]" : "aspect-[5/4]")}>
+                {item.type === "video" ? (
+                  <video
+                    src={cloudinaryVideoUrl(item.src, { width: 800 })}
+                    aria-label={item.alt}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                  />
+                ) : (
                   <Image
                     src={item.src}
                     alt={item.alt}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                    quality={60}
+                    className="object-cover transition duration-700 group-hover:scale-[1.03]"
                   />
-                </span>
-                <span className="flex items-center justify-between gap-4 px-1 py-4">
-                  <span>
-                    <span className="block font-display text-lg tracking-[-0.03em] text-ink uppercase">{item.title}</span>
-                    <span className="mt-1 block text-xs tracking-[0.14em] text-metal uppercase">
-                      {galleryFilters.find((entry) => entry.id === item.category)?.label}
-                    </span>
+                )}
+              </span>
+              <span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-ink/90 to-transparent p-4 text-white">
+                <span>
+                  <span className="block text-[10px] tracking-[0.18em] text-metal uppercase">
+                    {categoryLabel(item.category)}
                   </span>
-                  <span className="text-[11px] tracking-[0.16em] text-ink uppercase">
-                    Detay <span className="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-                  </span>
+                  <span className="mt-1 block font-display text-xl uppercase">{item.title}</span>
                 </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+                <span className="text-xs tracking-[0.16em] text-accent uppercase">Detay →</span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
 
-      {active ? (
-        <div
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/95 p-4 md:p-10"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={titleId}
-          onClick={() => setActiveId(null)}
-        >
-          <div
-            className="grid w-full max-w-5xl gap-6 bg-ink md:grid-cols-[1.4fr_0.8fr]"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="relative min-h-[320px] md:min-h-[560px]">
-              <Image
-                src={active.src}
-                alt={active.alt}
-                fill
-                sizes="(min-width: 768px) 60vw, 100vw"
-                className="object-cover"
-              />
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={titleId}
+        className="m-auto max-h-[92vh] w-[min(100%-1.5rem,1100px)] overflow-auto bg-ink p-0 text-white backdrop:bg-black/85"
+        onClose={() => setActiveIndex(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) dialogRef.current?.close();
+        }}
+        onKeyDown={onKeyDown}
+      >
+        {active ? (
+          <div>
+            <div
+              className="relative aspect-[16/10] bg-black"
+              onTouchStart={(event) => {
+                touchStart.current = event.touches[0]?.clientX ?? null;
+              }}
+              onTouchEnd={(event) => {
+                const start = touchStart.current;
+                const end = event.changedTouches[0]?.clientX;
+                touchStart.current = null;
+                if (start === null || end === undefined) return;
+                if (Math.abs(end - start) < swipeThreshold) return;
+                step(end < start ? 1 : -1);
+              }}
+            >
+              {active.type === "video" ? (
+                <video
+                  src={cloudinaryVideoUrl(active.src, { width: 1280 })}
+                  aria-label={active.alt}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="absolute inset-0 size-full object-contain"
+                />
+              ) : (
+                <Image
+                  key={active.src}
+                  src={active.src}
+                  alt={active.alt}
+                  fill
+                  sizes="(min-width: 1100px) 1100px, 100vw"
+                  quality={70}
+                  className="object-contain"
+                />
+              )}
+              {visible.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => step(-1)}
+                    className="absolute top-1/2 left-2 grid h-11 w-11 -translate-y-1/2 place-items-center bg-ink/70 hover:bg-accent"
+                  >
+                    <span className="sr-only">Önceki görsel</span>
+                    <ChevronLeft size={20} aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => step(1)}
+                    className="absolute top-1/2 right-2 grid h-11 w-11 -translate-y-1/2 place-items-center bg-ink/70 hover:bg-accent"
+                  >
+                    <span className="sr-only">Sonraki görsel</span>
+                    <ChevronRight size={20} aria-hidden="true" />
+                  </button>
+                </>
+              ) : null}
             </div>
-            <div className="flex flex-col p-6 text-white md:py-8 md:pr-8 md:pl-0">
-              <p className="text-[11px] tracking-[0.2em] text-accent uppercase">
-                {galleryFilters.find((entry) => entry.id === active.category)?.label}
-              </p>
-              <h2 id={titleId} className="mt-3 font-display text-3xl tracking-[-0.03em] uppercase">
-                {active.title}
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-metal">{active.caption}</p>
-              <p className="mt-6 text-xs text-metal">Temsili üretim görseli. Müşteri proje kaydı değildir.</p>
-              <div className="mt-auto flex flex-wrap gap-3 pt-8">
-                <button
-                  type="button"
-                  className="min-h-11 border border-white/20 px-4 text-[11px] tracking-[0.16em] uppercase"
-                  onClick={() => {
-                    const previousItem = visible[(activeIndex - 1 + visible.length) % visible.length];
-                    if (previousItem) setActiveId(previousItem.id);
-                  }}
-                >
-                  Önceki
-                </button>
-                <button
-                  type="button"
-                  className="min-h-11 border border-white/20 px-4 text-[11px] tracking-[0.16em] uppercase"
-                  onClick={() => {
-                    const next = visible[(activeIndex + 1) % visible.length];
-                    if (next) setActiveId(next.id);
-                  }}
-                >
-                  Sonraki
-                </button>
-                <button
-                  ref={closeRef}
-                  type="button"
-                  className="min-h-11 bg-white px-4 text-[11px] tracking-[0.16em] text-ink uppercase"
-                  onClick={() => setActiveId(null)}
-                >
-                  Kapat
-                </button>
+            <div className="flex items-center justify-between gap-4 p-4">
+              <div>
+                <p className="text-[10px] tracking-[0.18em] text-metal uppercase">
+                  {categoryLabel(active.category)} · {(activeIndex ?? 0) + 1} / {visible.length}
+                </p>
+                <p id={titleId} className="mt-1 font-display text-xl uppercase">
+                  {active.title}
+                </p>
+                <p className="mt-1 text-sm text-mist">{active.alt}</p>
               </div>
+              <button
+                type="button"
+                className="grid h-11 w-11 shrink-0 place-items-center border border-white/20 hover:border-accent"
+                onClick={() => dialogRef.current?.close()}
+              >
+                <span className="sr-only">Kapat</span>
+                <X size={18} aria-hidden="true" />
+              </button>
             </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </dialog>
     </div>
   );
 }

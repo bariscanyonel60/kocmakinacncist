@@ -1,0 +1,25 @@
+[build]
+command = "next build"
+publish = ".next"
+
+[build.environment]
+NODE_VERSION = "22"
+
+# Eski WordPress/blog URL'leri → yeni makale yolları (SEO sürekliliği)
+[[redirects]]
+  from = "/blog"
+  to = "/makaleler"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/sanayi-firmasi-icin-web-tasarim-bcy-dijital"
+  to = "/makaleler/web-tasarimi-bcy-dijital"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/makaleler/:splat"
+  status = 301
+  force = true

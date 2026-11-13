@@ -1,61 +1,67 @@
 import Link from "next/link";
-import { SiteLogo } from "@/components/ui/SiteLogo";
-import { company, mailHref, mobileHref, phoneHref, whatsappHref } from "@/data/company";
-import { mediaCredit } from "@/data/media-credit";
+import { cacheLife } from "next/cache";
+import { LogoImage } from "@/components/brand/Logo";
+import { MediaCredit } from "@/components/brand/MediaCredit";
+import { company, filled, phoneHref, whatsappHref } from "@/data/company";
 import { legalLinks } from "@/data/navigation";
-import { services } from "@/data/services";
+import { sectors } from "@/data/sectors";
 
 const corporate = [
   { href: "/kurumsal", label: "Hakkımızda" },
+  { href: "/kalite", label: "Kalite" },
   { href: "/makine-parkuru", label: "Makine Parkuru" },
-  { href: "/uretim", label: "Üretim" },
+  { href: "/galeri", label: "Projeler & Galeri" },
+  { href: "/uretim", label: "Üretim Süreci" },
   { href: "/sektorler", label: "Sektörler" },
-  { href: "/galeri", label: "Galeri" },
-  { href: "/blog", label: "Blog" },
-  { href: "/istanbul-cnc-torna", label: "CNC Torna İstanbul" },
-  { href: "/iletisim", label: "İletişim" },
+  { href: "/istanbul-cnc-torna", label: "İstanbul CNC Torna" },
+  { href: "/makaleler", label: "Makaleler" },
 ];
 
-export function Footer() {
-  const phone = phoneHref();
-  const mobile = mobileHref();
-  const email = mailHref();
+const production = [
+  { href: "/hizmetler", label: "Tüm hizmetler" },
+  { href: "/hizmetler/cnc-torna", label: "CNC Torna" },
+  { href: "/hizmetler/cnc-isleme", label: "CNC Freze" },
+  { href: "/hizmetler/talasli-imalat", label: "Talaşlı İmalat" },
+  { href: "/hizmetler/hassas-parca-uretimi", label: "Hassas İşleme" },
+  { href: "/hizmetler/prototip-uretim", label: "Prototip Üretim" },
+  { href: "/hizmetler/seri-uretim", label: "Seri Üretim" },
+  { href: "/hizmetler/ozel-parca-imalati", label: "Özel Parça" },
+];
+
+async function CopyrightYear() {
+  "use cache";
+  cacheLife("days");
+  return <>{new Date().getFullYear()}</>;
+}
+
+const linkClass = "text-base font-medium text-white/80 transition-colors hover:text-white";
+
+export function Footer({
+  blurb,
+  legalName = company.legalName,
+}: {
+  blurb?: string;
+  legalName?: string;
+}) {
+  const tel = phoneHref(company.phone);
+  const mobile = phoneHref(company.phoneMobile);
   const whatsapp = whatsappHref();
-  const featured = services.slice(0, 6);
 
   return (
-    <footer className="border-t border-white/10 bg-ink text-white">
-      <div className="mx-auto grid max-w-[1440px] gap-14 px-5 py-16 md:px-8 lg:grid-cols-[1.25fr_1fr_1fr_1.1fr] lg:px-12 lg:py-20">
-        <div>
-          <Link href="/" className="block w-[11rem] sm:w-[14rem]" aria-label="Koç Makina ana sayfa">
-            <SiteLogo variant="dark" className="max-h-16 sm:max-h-20" />
-          </Link>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-metal">
-            İstanbul Başakşehir İkitelli’de CNC torna, CNC işleme ve hassas talaşlı imalat. Teknik çizimden parçaya.
+    <footer className="bg-ink text-white">
+      <div className="border-b border-white/10 bg-accent">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-10">
+          <p className="min-w-0 text-base font-semibold tracking-[0.02em]">
+            CNC torna ve freze teklifi için çiziminizi gönderin veya arayın.
           </p>
-          <p className="mt-4 text-sm text-metal">
-            <a
-              href={mediaCredit.href}
-              target="_blank"
-              rel="noopener"
-              className="tracking-[0.08em] text-white/85 uppercase hover:text-white"
-            >
-              {mediaCredit.label}
-            </a>
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              href="/iletisim"
-              className="inline-flex min-h-11 items-center justify-center bg-accent px-5 text-[11px] font-semibold tracking-[0.18em] text-white uppercase hover:bg-[#c4191e]"
-            >
-              Teklif Al
-            </Link>
-            {phone ? (
+          <div className="flex max-w-full flex-wrap gap-2">
+            {tel ? (
               <a
-                href={phone}
-                className="inline-flex min-h-11 items-center justify-center border border-white/25 px-5 text-[11px] font-semibold tracking-[0.18em] text-white uppercase hover:border-accent"
+                href={tel}
+                className="inline-flex min-h-11 items-center bg-ink px-4 text-sm font-bold tracking-[0.12em] uppercase"
               >
-                Ara
+                <span className="sm:hidden">Ara</span>
+                <span className="hidden sm:inline">Ara · {company.phone}</span>
               </a>
             ) : null}
             {whatsapp ? (
@@ -63,87 +69,156 @@ export function Footer() {
                 href={whatsapp}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center justify-center border border-white/25 px-5 text-[11px] font-semibold tracking-[0.18em] text-white uppercase hover:border-accent"
+                className="inline-flex min-h-11 items-center bg-[#075E54] px-4 text-sm font-bold tracking-[0.12em] uppercase"
               >
                 WhatsApp
               </a>
             ) : null}
+            <Link
+              href="/iletisim#teklif"
+              className="inline-flex min-h-11 items-center bg-white px-4 text-sm font-bold tracking-[0.12em] text-ink uppercase"
+            >
+              Teklif formu →
+            </Link>
           </div>
         </div>
+      </div>
 
-        <div>
-          <h2 className="text-[11px] tracking-[0.24em] text-accent uppercase">Hizmetler</h2>
-          <ul className="mt-5 space-y-3 text-sm">
-            {featured.map((service) => (
-              <li key={service.slug}>
-                <Link href={`/hizmetler/${service.slug}`} className="text-white/85 hover:text-white">
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/hizmetler" className="text-white/85 hover:text-white">
-                Tüm hizmetler
-              </Link>
-            </li>
-          </ul>
+      <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-20">
+        <div className="flex flex-col gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <Link href="/" aria-label={`${company.name} ana sayfa`} className="block w-fit">
+              <LogoImage className="h-32 w-auto bg-transparent sm:h-36" />
+            </Link>
+            {legalName ? (
+              <p className="sr-only">{legalName}</p>
+            ) : null}
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/75">
+              {blurb ??
+                `${company.city} Başakşehir İkitelli'de CNC torna, CNC işleme ve hassas talaşlı imalat. Teknik çizimden parçaya.`}
+            </p>
+            {company.tags.length > 0 ? (
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {company.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="border border-white/15 px-3 py-1.5 text-xs tracking-[0.1em] text-white/70 uppercase"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {filled(company.parkSummary) ? (
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/55">{company.parkSummary}</p>
+            ) : null}
+          </div>
+          <Link
+            href="/iletisim#teklif"
+            className="group inline-flex min-h-12 w-fit items-center gap-3 bg-accent px-6 py-4 text-sm font-bold tracking-[0.14em] uppercase transition-colors hover:bg-white hover:text-ink"
+          >
+            Teklif Al
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
         </div>
 
-        <div>
-          <h2 className="text-[11px] tracking-[0.24em] text-accent uppercase">Kurumsal</h2>
-          <ul className="mt-5 space-y-3 text-sm">
-            {corporate.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-white/85 hover:text-white">
-                  {item.label}
+        <div className="mt-12 grid gap-12 sm:grid-cols-2 xl:grid-cols-4">
+          <nav aria-label="Kurumsal">
+            <p className="eyebrow text-metal">Kurumsal</p>
+            <ul className="mt-5 space-y-3">
+              {corporate.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-label="Üretim">
+            <p className="eyebrow text-metal">Üretim</p>
+            <ul className="mt-5 space-y-3">
+              {production.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-label="Sektörler">
+            <p className="eyebrow text-metal">Sektörler</p>
+            <ul className="mt-5 space-y-3">
+              {sectors.map((sector) => (
+                <li key={sector.name}>
+                  <Link href="/sektorler" className={linkClass}>
+                    {sector.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div>
+            <p className="eyebrow text-metal">İletişim</p>
+            <ul className="mt-5 space-y-3 text-base text-white/80">
+              {filled(company.founderName) ? (
+                <li>
+                  <span className="block font-semibold text-white">{company.founderName}</span>
+                  {filled(company.founderTitle) ? (
+                    <span className="text-sm text-white/55">{company.founderTitle}</span>
+                  ) : null}
+                </li>
+              ) : null}
+              {filled(company.address) ? <li>{company.address}</li> : null}
+              {tel ? (
+                <li>
+                  <a href={tel} className="hover:text-white">
+                    {company.phone}
+                  </a>
+                </li>
+              ) : null}
+              {mobile ? (
+                <li>
+                  <a href={mobile} className="hover:text-white">
+                    {company.phoneMobile}
+                  </a>
+                </li>
+              ) : null}
+              {whatsapp ? (
+                <li>
+                  <a href={whatsapp} target="_blank" rel="noreferrer" className="hover:text-white">
+                    WhatsApp
+                  </a>
+                </li>
+              ) : null}
+              {filled(company.email) ? (
+                <li>
+                  <a href={`mailto:${company.email}`} className="hover:text-white">
+                    {company.email}
+                  </a>
+                </li>
+              ) : null}
+              <li>
+                <Link href="/iletisim#teklif" className="hover:text-white">
+                  Teklif formu
                 </Link>
               </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="text-[11px] tracking-[0.24em] text-accent uppercase">İletişim</h2>
-          <ul className="mt-5 space-y-3 text-sm text-white/85">
-            {company.contactName ? (
               <li>
-                <span className="block text-white">{company.contactName}</span>
-                {company.contactTitle ? <span className="block text-metal">{company.contactTitle}</span> : null}
+                <Link href="/gizlilik-politikasi" className="hover:text-white">
+                  Gizlilik politikası
+                </Link>
               </li>
-            ) : null}
-            {company.address ? <li>{company.address}</li> : <li>{company.city}</li>}
-            {phone ? (
-              <li>
-                <a href={phone} className="hover:text-white">
-                  {company.phone}
-                </a>
-              </li>
-            ) : null}
-            {mobile ? (
-              <li>
-                <a href={mobile} className="hover:text-white">
-                  {company.mobile}
-                </a>
-              </li>
-            ) : null}
-            {email ? (
-              <li>
-                <a href={email} className="hover:text-white">
-                  {company.email}
-                </a>
-              </li>
-            ) : null}
-          </ul>
-          {(company.instagram || company.linkedin) && (
-            <ul className="mt-6 space-y-3 text-sm">
-              {company.instagram ? (
+              {filled(company.instagram) ? (
                 <li>
                   <a href={company.instagram} className="hover:text-white" rel="noreferrer">
                     Instagram
                   </a>
                 </li>
               ) : null}
-              {company.linkedin ? (
+              {filled(company.linkedin) ? (
                 <li>
                   <a href={company.linkedin} className="hover:text-white" rel="noreferrer">
                     LinkedIn
@@ -151,24 +226,14 @@ export function Footer() {
                 </li>
               ) : null}
             </ul>
-          )}
+          </div>
         </div>
-      </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-5 py-5 text-[11px] tracking-[0.14em] text-metal uppercase md:flex-row md:items-center md:justify-between md:px-8 lg:px-12">
-          <p>© 2026 KOC Makina CNC</p>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            <li>
-              <a
-                href={mediaCredit.href}
-                target="_blank"
-                rel="noopener"
-                className="hover:text-white"
-              >
-                {mediaCredit.label}
-              </a>
-            </li>
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm tracking-[0.06em] text-white/55 uppercase md:flex-row md:items-center md:justify-between">
+          <p>
+            © <CopyrightYear /> {company.name}
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legalLinks.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-white">
@@ -177,6 +242,10 @@ export function Footer() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="mt-8 flex justify-center border-t border-white/10 pt-6 pb-1">
+          <MediaCredit />
         </div>
       </div>
     </footer>

@@ -1,11 +1,11 @@
-export function JsonLd({ data }: { data: unknown }) {
-  const payload = Array.isArray(data) ? data.filter((item) => item != null) : data;
-  if (payload == null || (Array.isArray(payload) && payload.length === 0)) return null;
+import { jsonLdScript } from "@/lib/jsonld";
 
+export function JsonLd({ data }: { data: Record<string, unknown> }) {
+  const payload = "@context" in data ? data : { "@context": "https://schema.org", ...data };
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(payload) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdScript(payload) }}
     />
   );
 }

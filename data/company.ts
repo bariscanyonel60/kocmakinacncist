@@ -1,58 +1,58 @@
 /**
- * Firma bilgileri tek kaynaktan yönetilir.
- * Doğrulanmamış telefon, adres, e-posta, sosyal hesap ve koordinat yazılmamalıdır.
- * Yayın öncesi NEXT_PUBLIC_SITE_URL gerçek alan adıyla tanımlanmalıdır.
- * Kaynak: firma kartviziti (Erkan Koç).
+ * Firma bilgileri tek noktadan yönetilir.
+ * Kaynak: kartvizit (Erkan Koç / Koç Makina). Logo görseli ayrı tutulur.
+ * Dolu değerler header, footer, CTA ve WhatsApp düğmesinde kendiliğinden görünür.
+ *
+ * WhatsApp: ülke koduyla, yalnızca rakam. Örnek: 90555xxxxxxx
+ * Sosyal alanlar tam URL olmalıdır.
  */
 export const company = {
-  name: "KOC Makina CNC",
-  shortName: "KOC Makina",
-  contactName: "Erkan Koç",
-  contactTitle: "Kurucu | Genel Müdür",
+  name: "Koç Makina CNC",
+  shortName: "Koç Makina",
+  /** Ticari unvan — logo altında gösterilir. */
+  legalName: "CNC Mühendislik Sanayi ve Ticaret Limited Şirketi",
+  founderName: "Erkan Koç",
+  founderTitle: "Kurucu | Genel Müdür",
   phone: "0212 671 33 67",
-  mobile: "0505 093 49 57",
-  whatsapp: "0505 093 49 57",
+  phoneMobile: "0505 093 49 57",
+  whatsapp: "905050934957",
   email: "info@kocmakinacnc.com",
   address: "İkitelli OSB Mah. Demirciler San. Sit. B2 Blok No:59/B Başakşehir / İstanbul",
   city: "İstanbul",
   country: "Türkiye",
+  tags: ["Makina sanayi", "CNC yedek parça", "Talaşlı imalat"] as const,
+  parkSummary: "15\" CNC Torna • 8\" CNC Torna • CNC İşleme • 4 Eksen CNC İşleme • Torna • Freze",
   instagram: "",
   linkedin: "",
   maps: "",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://kocmakinacnc.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kocmakinacnc.com",
 } as const;
 
-export const whatsappMessage =
-  "Merhaba KOC Makina, CNC üretim hakkında bilgi ve fiyat teklifi almak istiyorum.";
+/**
+ * Ana sayfa giriş bölümündeki rakamlar.
+ * Kartvizitte sayı yok; tahmini değer yazılmaz. Boş kart yayınlanmaz.
+ */
+export const companyStats: { value: string; label: string }[] = [
+  { value: "", label: "Yıllık deneyim" },
+  { value: "", label: "Tamamlanan proje" },
+  { value: "", label: "CNC tezgâh" },
+  { value: "", label: "Hizmet verilen sektör" },
+];
 
-export function digitsOnly(value: string) {
-  return value.replace(/\D/g, "");
+export function filled(value: string) {
+  return value.trim().length > 0;
 }
 
-/** Türkiye yerel numarayı E.164 rakamlarına çevirir (örn. 0212… → 90212…). */
-export function toIntlDigits(value: string) {
-  let digits = digitsOnly(value);
-  if (!digits) return "";
-  if (digits.startsWith("00")) digits = digits.slice(2);
-  if (digits.startsWith("0")) digits = `90${digits.slice(1)}`;
-  return digits;
-}
-
-export function phoneHref(value: string = company.phone) {
-  const digits = toIntlDigits(value);
-  return digits ? `tel:+${digits}` : null;
-}
-
-export function mobileHref() {
-  return company.mobile ? phoneHref(company.mobile) : null;
+export function phoneHref(phone: string) {
+  const digits = phone.replace(/[^\d+]/g, "");
+  return digits ? `tel:${digits}` : null;
 }
 
 export function whatsappHref() {
-  const digits = toIntlDigits(company.whatsapp);
+  const digits = company.whatsapp.replace(/\D/g, "");
   if (!digits) return null;
-  return `https://wa.me/${digits}?text=${encodeURIComponent(whatsappMessage)}`;
-}
-
-export function mailHref() {
-  return company.email ? `mailto:${company.email}` : null;
+  const text = encodeURIComponent(
+    "Merhaba Koç Makina, CNC üretim hakkında bilgi ve fiyat teklifi almak istiyorum.",
+  );
+  return `https://wa.me/${digits}?text=${text}`;
 }

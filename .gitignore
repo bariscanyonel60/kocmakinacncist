@@ -16,15 +16,6 @@
 # next.js
 /.next/
 /out/
-.worktrees/
-
-# local agent state
-.claude/learning/
-.claude/settings.local.json
-.cursor/learning/
-.kiro/learning/
-**/__pycache__/
-*.pyc
 
 # production
 /build
@@ -41,6 +32,14 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# hosting API gizli ayarları
+/hosting/koc-api/config.php
+/hosting/*.zip
+
+# netlify
+.netlify
 
 # vercel
 .vercel
@@ -48,3 +47,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.shots

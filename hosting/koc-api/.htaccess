@@ -1,0 +1,17 @@
+Options -Indexes
+
+<IfModule LiteSpeed>
+  CacheLookup off
+</IfModule>
+
+<FilesMatch "(^config(\.example)?\.php|^schema\.sql|\.zip)$">
+  Require all denied
+</FilesMatch>
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ - [F]
+
+# Authorization başlığı PHP'ye LiteSpeed/Apache üzerinden iletilsin.
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

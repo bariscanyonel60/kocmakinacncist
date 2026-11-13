@@ -1,6 +1,0 @@
----
-description: KOC Makina içerik doğruluğu
-alwaysApply: true
----
-
-Firma telefonu, adresi, e-postası, sosyal hesabı, kuruluş yılı, sertifika, tezgah sayısı, tolerans ve kapasite uydurulmaz. Bu alanlar `data/company.ts` ve `data/machines.ts` içinden doldurulur. Stok görseller müşteri projesi veya firmanın kendi tezgahı gibi yazılmaz. İletişim formu backend bağlanmadan başarılı gönderim gibi davranmaz.
