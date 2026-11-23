@@ -1,6 +1,6 @@
 import { cacheLife, cacheTag } from "next/cache";
 import { galleryCategories, galleryItems, type GalleryItem } from "@/data/gallery";
-import { cloudinaryEnabled } from "@/lib/cloudinary";
+import { cloudinaryEnabled, cloudinaryImageUrl, cloudinaryVideoUrl } from "@/lib/cloudinary";
 import { cloudinaryMediaConfigured, listPublishedCloudinaryGallery } from "@/lib/cloudinary-media";
 
 const categoryIds = new Set<string>(galleryCategories.map((category) => category.id));
@@ -25,8 +25,12 @@ export async function getGalleryItems(): Promise<GalleryItem[]> {
     const items: GalleryItem[] = [];
     for (const record of records) {
       if (!isGalleryCategory(record.category)) continue;
+      const isVideo = record.type === "video";
       items.push({
-        src: record.publicId,
+        // Public ID yerine teslim URL — unoptimized / loader atlanırsa da kırılmaz.
+        src: isVideo
+          ? cloudinaryVideoUrl(record.publicId, { width: 1280 })
+          : cloudinaryImageUrl(record.publicId, { width: 1600 }),
         alt: record.alt || record.title || "Galeri görseli",
         title: record.title || record.alt || "Galeri",
         category: record.category,

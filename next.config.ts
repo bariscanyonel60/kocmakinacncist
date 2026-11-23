@@ -10,14 +10,17 @@ const nextConfig: NextConfig = {
     proxyClientMaxBodySize: "12mb",
   },
   images: {
-    // Vercel Image Optimization kapalı — Cloudinary (veya static) doğrudan servis eder.
-    unoptimized: true,
+    // Cloudinary custom loader Vercel Image Optimization'ı zaten bypass eder.
+    // Cloudinary yokken unoptimized: Vercel opt kullanılmaz, public/images doğrudan servis edilir.
     deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920],
     imageSizes: [64, 96, 128, 256, 384],
     qualities: [55, 60, 65, 70, 75],
     ...(cloudinary
       ? { loader: "custom" as const, loaderFile: "./lib/cloudinary-loader.ts" }
-      : { formats: ["image/avif", "image/webp"] as const }),
+      : {
+          unoptimized: true,
+          formats: ["image/avif", "image/webp"] as const,
+        }),
   },
   async redirects() {
     return [
